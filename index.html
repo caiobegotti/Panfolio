@@ -1,0 +1,27 @@
+<!-- this is only a bare sample! -->
+
+<html>
+
+<head>
+	<title>Panfolio: a nice simple gallery of your photos</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="https://raw.github.com/desandro/isotope/master/jquery.isotope.min.js"></script>
+</head>
+
+<body style="width: 50%" id="container">
+
+<!-- panfolio's output here --> 
+
+<script>
+	$(function(){
+		var $container = $('#container');
+		$container.imagesLoaded( function(){
+			$container.isotope({
+				itemSelector : '.thumbnail'
+			});
+		});
+	});
+</script>
+</body>
+
+</html>
