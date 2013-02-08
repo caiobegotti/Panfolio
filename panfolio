@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+__license__   = 'Public Domain'
+__author__    = 'Caio Begotti'
+__email__     = 'caio1982@gmail.com'
+__credits__   = ['']
+
+"""
+Panfolio is a tiny Python script to generate a nice
+simple gallery of all your vacations photos
+"""
+
+import sys
+
+def main():
+    print 'Pong!'
+
+if __name__ == "__main__":
+    main()
+    print 'Exiting now...'
+    sys.exit()
