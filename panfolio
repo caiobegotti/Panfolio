@@ -11,12 +11,37 @@ Panfolio is a tiny Python script to generate a nice
 simple gallery of all your vacations photos
 """
 
+import os
 import sys
+import mimetypes
+import argparse
+import glob
+
+import Image
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-d', '--dir', help='your photos directory')
+args = parser.parse_args()
 
 def main():
-    print 'Pong!'
+    size = 128, 128
+    path = args.dir + '/*'
+    list = [x for x in glob.glob(path) if not x.endswith('.thumbnail.png')]
+    for file in list:
+        thumb = os.path.splitext(file)[0] + ".thumbnail.png"
+        type = mimetypes.guess_type(file)[0]
+        if type and 'image' in type:
+            try:
+                i = Image.open(file)
+                i.thumbnail(size, Image.ANTIALIAS)
+                i.save(thumb, 'PNG')
+                print '<a href="%s"><img class="thumbnail" src="%s" width="%d" height="%d" /></a>' % (file, thumb, i.size[0], i.size[1])
+            except IOError:
+                print 'Thumbnailing failed for %s' % file
+    sys.exit(0)
 
 if __name__ == "__main__":
+    if not args.dir:
+        parser.print_help()
+        sys.exit(2)
     main()
-    print 'Exiting now...'
-    sys.exit()
