@@ -40,10 +40,10 @@ def main():
             try:
                 i = image.open(filepath)
                 i.thumbnail(size, image.ANTIALIAS)
-                i.save(args.dir + thumbnail, 'JPEG')
+                i.save(args.dir + thumbnail, 'PNG')
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
-            print "\t<div class='item'><a href='%s'><img class='thumbnail' src='%s' width='%d' height='%d'/></a></div>"  % (filename, thumbnail, i.size[0], i.size[1])
+            print "\t<div class='item'><a href='%s'><img class='thumbnail' src='%s' /></a></div>"  % (filename, thumbnail)
         else:
             print "Skipping file %s (it's not an image)" % filepath
 
