@@ -8,6 +8,7 @@ Pros
 
 - as fast and as simple as it could get
 - renders fine in tablets and phones
+- your pictures matter, no cluttering
 - elegant!
 
 Cons
@@ -24,3 +25,4 @@ Pending
 - ultra light thumbnails option
 - custom header/url option
 - no-text-in-my-gallery option
+- caching, maybe?
