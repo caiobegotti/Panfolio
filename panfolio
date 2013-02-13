@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-__license__   = 'Public Domain'
+__license__   = 'All original files are public domain'
 __author__    = 'Caio Begotti'
 __email__     = 'caio1982@gmail.com'
 __credits__   = ['']
@@ -17,7 +17,7 @@ import mimetypes
 import argparse
 import glob
 
-import Image
+import Image as image
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--dir', help='your photos directory')
@@ -25,23 +25,29 @@ args = parser.parse_args()
 
 def main():
     size = 128, 128
-    path = args.dir + '/*'
-    list = [x for x in glob.glob(path) if not x.endswith('.thumbnail.png')]
-    for file in list:
-        thumb = os.path.splitext(file)[0] + ".thumbnail.png"
-        type = mimetypes.guess_type(file)[0]
+    allimages = args.dir + '/*'
+    outpath = args.dir + '.panfolio'
+    if not os.path.exists(outpath):
+        os.makedirs(outpath)
+
+    for filepath in glob.glob(allimages):
+        print filepath
+        type = mimetypes.guess_type(filepath)[0]
+        thumbnail = '.panfolio/%s' % os.path.split(filepath)[1]
         if type and 'image' in type:
             try:
-                i = Image.open(file)
-                i.thumbnail(size, Image.ANTIALIAS)
-                i.save(thumb, 'PNG')
-                print '<a href="%s"><img class="thumbnail" src="%s" width="%d" height="%d" /></a>' % (file, thumb, i.size[0], i.size[1])
+                i = image.open(filepath)
+                i.thumbnail(size, image.ANTIALIAS)
+                i.save(args.dir + thumbnail, 'JPEG')
             except IOError:
-                print 'Thumbnailing failed for %s' % file
-    sys.exit(0)
+                print 'Thumbnailing failed for %s' % filepath
+            print "\t<div class='item'><a href='%s'><img class='thumbnail' src='%s' width='%d' height='%d'/></a></div>"  % (filepath, thumbnail, i.size[0], i.size[1])
+        else:
+            print "Skipping file %s (it's not an image)" % filepath
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     if not args.dir:
         parser.print_help()
         sys.exit(2)
     main()
+    sys.exit(0)
