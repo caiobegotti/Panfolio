@@ -6,12 +6,12 @@ Panfolio is a tiny Python script to generate a nice simple gallery of all your (
 Pros
 ====
 
-- fast
-- simple
+- as fast and as simple as it could get
+- renders fine in tablets and phones
 - elegant!
 
 Cons
 ====
 
-- not much customizable
-- poorly-written
+- not much customizable... yet!
+- thumbnails won't rotate via exif... yet!
