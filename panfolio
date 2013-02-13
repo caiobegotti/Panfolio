@@ -22,6 +22,7 @@ import Image as image
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--dir', help='your photos directory')
+parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
 args = parser.parse_args()
 
 def main():
@@ -54,8 +55,7 @@ def main():
 <div id="gallery">
                   """
 
-    html_footer = """
-</div>
+    html_append = """
 <div id="content">
 	<!-- also dynamic, just like the title tag -->
 	<h1>&#9618; Gallery name goes here</h1>
@@ -73,6 +73,10 @@ def main():
 	</div>
 	<!-- delayed loading as it's not critical -->
 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+</div>
+                   """
+
+    html_footer = """
 </div>
 
 <script>
@@ -112,7 +116,11 @@ $( function() {
     for res in resources:
         shutil.copy('resources/' + res, outpath)
 
-    html_data = html_header + '\n\t'.join(html_gallery) +  html_footer
+    if args.fullscreen:
+        html_data = html_header + '\n\t'.join(html_gallery) +  html_footer
+    else:
+        html_data = html_header + '\n\t'.join(html_gallery) + html_append +  html_footer
+
     with open (args.dir + 'index.html', 'w') as f:
         f.write(html_data)
 
