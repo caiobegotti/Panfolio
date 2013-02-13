@@ -29,11 +29,13 @@ def main():
     outpath = args.dir + '.panfolio'
     if not os.path.exists(outpath):
         os.makedirs(outpath)
+    else:
+        print 'Thumbnails directory %s not empty, creation skipped' % outpath
 
     for filepath in glob.glob(allimages):
-        print filepath
         type = mimetypes.guess_type(filepath)[0]
-        thumbnail = '.panfolio/%s' % os.path.split(filepath)[1]
+        filename = os.path.split(filepath)[1]
+        thumbnail = '.panfolio/%s' % filename
         if type and 'image' in type:
             try:
                 i = image.open(filepath)
@@ -41,7 +43,7 @@ def main():
                 i.save(args.dir + thumbnail, 'JPEG')
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
-            print "\t<div class='item'><a href='%s'><img class='thumbnail' src='%s' width='%d' height='%d'/></a></div>"  % (filepath, thumbnail, i.size[0], i.size[1])
+            print "\t<div class='item'><a href='%s'><img class='thumbnail' src='%s' width='%d' height='%d'/></a></div>"  % (filename, thumbnail, i.size[0], i.size[1])
         else:
             print "Skipping file %s (it's not an image)" % filepath
 
