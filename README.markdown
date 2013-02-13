@@ -19,8 +19,8 @@ Cons
 Pending
 -------
 
-- [ ] exif rotation
-- [ ] social sharing options
-- [ ] ultra light thumbnails option
-- [ ] custom header/url option
-- [ ] no-text-in-my-gallery option
+- exif rotation
+- social sharing options
+- ultra light thumbnails option
+- custom header/url option
+- no-text-in-my-gallery option
