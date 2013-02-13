@@ -1,39 +1,53 @@
-<!-- this is only a bare sample! -->
-
 <html>
-
 <head>
-	<title>Panfolio: a nice simple gallery of your photos</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script src="https://raw.github.com/desandro/isotope/master/jquery.isotope.min.js"></script>
+	<!-- should be dynamic via a command line option to set it -->
+	<title>Panfolio, a nice simple gallery of all your pictures</title>
+
+	<!-- gotta document which version of masonry works best -->
+	<script src="resources/jquery-1.7.1.min.js" type="text/javascript"></script>
+	<script src="resources/jquery.masonry.min.js" type="text/javascript"></script>
+
+	<!-- default styling theme -->
+	<link href="resources/default.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body style="width: 50%" id="container">
+<body>
 
-<!-- panfolio's output here --> 
-<a href="photos/Screenshot from 2012-09-03 08_50_31.png"><img class="thumbnail" src="photos/Screenshot from 2012-09-03 08_50_31.thumbnail.png" width="128" height="102" /></a>
-<a href="photos/caio1982.jpg"><img class="thumbnail" src="photos/caio1982.thumbnail.png" width="85" height="128" /></a>
-<a href="photos/NYC-0251.jpg"><img class="thumbnail" src="photos/NYC-0251.thumbnail.png" width="128" height="85" /></a>
-<a href="photos/NYC-1094.jpg"><img class="thumbnail" src="photos/NYC-1094.thumbnail.png" width="128" height="85" /></a>
-<a href="photos/Slug_Prince_dies.gif"><img class="thumbnail" src="photos/Slug_Prince_dies.thumbnail.png" width="128" height="114" /></a>
-<a href="photos/caio.PNG"><img class="thumbnail" src="photos/caio.thumbnail.png" width="128" height="128" /></a>
-<a href="photos/ilha.JPG"><img class="thumbnail" src="photos/ilha.thumbnail.png" width="128" height="85" /></a>
-<a href="photos/FISL-slackware.jpg"><img class="thumbnail" src="photos/FISL-slackware.thumbnail.png" width="128" height="96" /></a>
-<a href="photos/Soles-of-Barefoot-Ken-Bob-by-Luis-Escobar.jpg"><img class="thumbnail" src="photos/Soles-of-Barefoot-Ken-Bob-by-Luis-Escobar.thumbnail.png" width="128" height="85" /></a>
-<a href="photos/hmmkay.png"><img class="thumbnail" src="photos/hmmkay.thumbnail.png" width="53" height="128" /></a>
-<a href="photos/nightrun.jpg"><img class="thumbnail" src="photos/nightrun.thumbnail.png" width="128" height="85" /></a>
-<a href="photos/psylocke.jpg"><img class="thumbnail" src="photos/psylocke.thumbnail.png" width="128" height="99" /></a>
+<div id="gallery">
+	<div class='item'><a class='fancybox' rel='superbox[gallery]' href='126_2288.JPG'><img class=image src='.thumbnail/thumb_126_2288.JPG' /></a></div>
+</div>
+
+<div id="content">
+	<!-- also dynamic, just like the title tag -->
+	<h1>&#9618; Gallery name goes here</h1>
+	<p><a href="http://alfanumerico.net">http://alfanumerico.net</a></p>
+
+	<!-- should be optional -->
+	<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+		<!-- which ones make in via command line flags, maybe? -->
+		<a class="addthis_button_twitter"></a>
+		<a class="addthis_button_facebook"></a>
+		<a class="addthis_button_google_plusone_share"></a>
+		<a class="addthis_button_tumblr"></a>
+		<a class="addthis_button_instapaper"></a>
+		<a class="addthis_button_email"></a>
+	</div>
+	<!-- delayed loading as it's not critical -->
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+</div>
 
 <script>
-	$(function(){
-		var $container = $('#container');
-		$container.imagesLoaded( function(){
-			$container.isotope({
-				itemSelector : '.thumbnail'
-			});
-		});
-	});
+$( function() {
+  var $container = $('#gallery');
+  $container.imagesLoaded( function() {
+    $container.masonry({
+      columnWidth: function( containerWidth ) {
+        return containerWidth / 5
+      }
+    });
+  });	 
+});
 </script>
-</body>
 
+</body>
 </html>
