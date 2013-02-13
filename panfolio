@@ -24,7 +24,7 @@ parser.add_argument('-d', '--dir', help='your photos directory')
 args = parser.parse_args()
 
 def main():
-    size = 128, 128
+    size = 256, 256
     allimages = args.dir + '/*'
     outpath = args.dir + '.panfolio'
     if not os.path.exists(outpath):
@@ -35,7 +35,7 @@ def main():
     for filepath in glob.glob(allimages):
         type = mimetypes.guess_type(filepath)[0]
         filename = os.path.split(filepath)[1]
-        thumbnail = '.panfolio/%s' % filename
+        thumbnail = '.panfolio/%s.png' % os.path.splitext(filename)[0]
         if type and 'image' in type:
             try:
                 i = image.open(filepath)
