@@ -85,7 +85,11 @@ p {
     -moz-transform: scale(1.1);
 }
 
+#gallery {
+    padding-bottom: 5%;
+}
+
 #content {
     border-bottom: 50px solid #222;
-    padding: 5% 0% 5% 5%;
+    padding: 0% 0% 5% 5%;
 }
