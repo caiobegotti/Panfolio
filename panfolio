@@ -22,7 +22,7 @@ import Image as image
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--dir', help='your photos directory')
-parser.add_argument('-t', '--title', help='the title of your gallery')
+parser.add_argument('-n', '--name', help='the name of your gallery')
 parser.add_argument('-u', '--url', help='url to be appended to your gallery')
 parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
 parser.add_argument('-s', '--sharing', help='enables social sharing features', action='store_true')
@@ -40,10 +40,21 @@ def main():
     else:
         print 'Thumbnails directory %s not empty, creation skipped' % outpath
 
+    if args.name is None:
+        print 'Empty gallery name, assigning default'
+        html_name = 'Localhost'
+    else:
+        html_name = args.name
+
+    if args.url is None:
+        print 'Empty gallery URL address, assigning default'
+        html_url = 'http://127.0.0.1'
+    else:
+        html_url = args.url
+    
     html_header = """
 <head>
-	<!-- should be dynamic via a command line option to set it -->
-	<title>Panfolio, a nice simple gallery of all your pictures</title>
+	<title>%s</title>
 
 	<!-- gotta document which version of masonry works best -->
 	<script src=".panfolio/jquery-1.7.1.min.js" type="text/javascript"></script>
@@ -52,13 +63,13 @@ def main():
 	<!-- default styling theme -->
 	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" />
 </head>
-                  """
+                  """ % (html_name)
+
     html_content = """
 <div id="content">
-	<!-- also dynamic, just like the title tag -->
-	<h1>&#9618; Gallery name goes here</h1>
-	<p><a href="http://alfanumerico.net">http://alfanumerico.net</a></p>
-                   """
+	<h1>&#9618; %s</h1>
+	<p><a href="%s">%s</a></p>
+                   """ % (html_name, html_url, html_url)
     html_sharing = """
 	<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
 		<!-- which ones make in via command line flags, maybe? -->
@@ -104,7 +115,7 @@ $( function() {
                 i.save(args.dir + thumbnail, 'JPEG', quality=100, progressive=True)
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
-            item = "<div class='item'><a href='%s'><img class='thumbnail' src='%s' /></a></div>"  % (filename, thumbnail)
+            item = "\t<div class='item'><a href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
             html.append(item)
         else:
             print "Skipping file %s (it's not an image)" % filepath
@@ -119,7 +130,6 @@ $( function() {
         print 'Fullscreen option has precedence over sharing features and others'
 
     html.append(html_footer)
-    html.append('</div>')
     html.append('</body>')
     html.append('</html>')
 
