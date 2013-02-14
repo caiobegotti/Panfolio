@@ -21,4 +21,5 @@ Cons
 Pending
 -------
 
-- caching, maybe?
+- merge css, js and html into a single file?
+- thumbnails caching, maybe?
