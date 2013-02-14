@@ -28,3 +28,5 @@ Pending
 
 - merge css, js and html into a single file?
 - thumbnails caching, maybe?
+- support sub-directories?
+- infinite scroll?
