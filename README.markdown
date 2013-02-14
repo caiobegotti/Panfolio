@@ -7,9 +7,10 @@ Pros
 ====
 
 - as fast and as simple as it could get
-- renders fine in tablets and phones
+- renders fine in tablets and smarthphones
 - your pictures matter, no cluttering
-- addthis' support to share cat pictures
+- addthis.com's support for sharing photos
+- automagically rotates thumbnails
 - elegant!
 
 Cons
