@@ -139,6 +139,8 @@ $( function() {
     with open (args.dir + 'index.html', 'w') as f:
         f.write('\n'.join(html))
 
+    print '\nAll done! You can now copy your directory %s and gallery files to anywhere you want.\t' % args.dir
+
 if __name__ == '__main__':
     if not args.dir:
         parser.print_help()
