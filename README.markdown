@@ -22,7 +22,5 @@ Pending
 -------
 
 - exif rotation
-- social sharing options
 - custom header/url option
-- no-text-in-my-gallery option
 - caching, maybe?
