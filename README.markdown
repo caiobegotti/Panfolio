@@ -6,7 +6,7 @@ Panfolio is a tiny Python script to generate a nice simple gallery of all your (
 Demo
 ----
 
-Wanna see how Panfolio looks like? Check it out: [http://caio.ueberalles.net/panfolio-demo]
+Wanna see how Panfolio looks like? Check it out: http://caio.ueberalles.net/panfolio-demo
 
 Pros
 ====
