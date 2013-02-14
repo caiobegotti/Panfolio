@@ -18,7 +18,8 @@ import argparse
 import glob
 import shutil
 
-import Image as image
+from PIL import Image as image
+from PIL import ExifTags as exif
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--dir', help='your photos directory')
@@ -27,6 +28,20 @@ parser.add_argument('-u', '--url', help='url to be appended to your gallery')
 parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
 parser.add_argument('-s', '--sharing', help='enables social sharing features', action='store_true')
 args = parser.parse_args()
+
+# http://www.endlesslycurious.com/2011/05/11/extracting-image-exif-data-with-python/
+def get_exif_data(image):
+    ret = {}
+    try:
+        if hasattr(image, '_getexif' ):
+            exifinfo = image._getexif()
+            if exifinfo != None:
+                for tag, value in exifinfo.items():
+                    decoded = exif.TAGS.get(tag, tag)
+                    ret[decoded] = value
+    except IOError:
+        print 'IOERROR ' + image
+    return ret
 
 def main():
     resources = ['default.css',
@@ -109,8 +124,20 @@ $( function() {
         filename = os.path.split(filepath)[1]
         thumbnail = '.panfolio/%s.jpg' % os.path.splitext(filename)[0]
         if type and 'image' in type:
+            # FIXME: not the prettiest try/except around...
+            #        is it too bad to have nested try/except?
             try:
                 i = image.open(filepath)
+                try:
+                    exifdata = get_exif_data(i)
+                    if exifdata['Orientation'] == 3:
+                        i = i.transpose(image.ROTATE_180)
+                    elif exifdata['Orientation'] == 6:
+                        i = i.transpose(image.ROTATE_270)
+                    elif exifdata['Orientation'] == 8:
+                        i = i.transpose(image.ROTATE_90)
+                except KeyError:
+                    print 'No orientation found in EXIF tags of %s' % filepath
                 i.thumbnail(size, image.ANTIALIAS)
                 i.save(args.dir + thumbnail, 'JPEG', quality=100, progressive=True)
             except IOError:

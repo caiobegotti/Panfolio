@@ -15,10 +15,9 @@ Pros
 Cons
 ====
 
-- only safari rotates photos via exif... yet!
+- you tell me!
 
 Pending
 -------
 
-- enforce exif rotation
 - caching, maybe?
