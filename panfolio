@@ -44,7 +44,7 @@ def get_exif_data(image):
     return ret
 
 def main():
-    resources = ['default.css', 'jquery.masonry.min.js']
+    resources = ['default.css', 'jquery.masonry.min.js', 'jquery.lazyload.min.js']
     size = 256, 256
     allimages = args.dir + '/*'
     outpath = args.dir + '.panfolio'
