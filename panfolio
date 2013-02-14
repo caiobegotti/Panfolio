@@ -112,12 +112,11 @@ $( function() {
    
     if not args.fullscreen:
         html.append(html_content)
-
-    if args.sharing and not args.fullscreen:
-        html.append(html_sharing)
-   
-    if not args.fullscreen: 
+        if args.sharing:
+            html.append(html_sharing)
         html.append('</div>')
+    else:
+        print 'Fullscreen option has precedence over sharing features and others'
 
     html.append(html_footer)
     html.append('</div>')
