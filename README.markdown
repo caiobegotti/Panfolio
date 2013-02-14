@@ -15,12 +15,10 @@ Pros
 Cons
 ====
 
-- not much customizable... yet!
-- thumbnails won't rotate via exif... yet!
+- only safari rotates photos via exif... yet!
 
 Pending
 -------
 
-- exif rotation
-- custom header/url option
+- enforce exif rotation
 - caching, maybe?
