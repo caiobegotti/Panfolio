@@ -30,3 +30,4 @@ Pending
 - thumbnails caching, maybe?
 - support sub-directories?
 - infinite scroll?
+- lightbox?
