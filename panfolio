@@ -23,6 +23,7 @@ import Image as image
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--dir', help='your photos directory')
 parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
+parser.add_argument('-s', '--sharing', help='enables social sharing features', action='store_true')
 args = parser.parse_args()
 
 def main():
@@ -38,7 +39,6 @@ def main():
         print 'Thumbnails directory %s not empty, creation skipped' % outpath
 
     html_header = """
-<html>
 <head>
 	<!-- should be dynamic via a command line option to set it -->
 	<title>Panfolio, a nice simple gallery of all your pictures</title>
@@ -50,18 +50,14 @@ def main():
 	<!-- default styling theme -->
 	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" />
 </head>
-
-<body>
-<div id="gallery">
                   """
-
-    html_append = """
+    html_content = """
 <div id="content">
 	<!-- also dynamic, just like the title tag -->
 	<h1>&#9618; Gallery name goes here</h1>
 	<p><a href="http://alfanumerico.net">http://alfanumerico.net</a></p>
-
-	<!-- should be optional -->
+                   """
+    html_sharing = """
 	<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
 		<!-- which ones make in via command line flags, maybe? -->
 		<a class="addthis_button_twitter"></a>
@@ -73,12 +69,8 @@ def main():
 	</div>
 	<!-- delayed loading as it's not critical -->
 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
-</div>
                    """
-
     html_footer = """
-</div>
-
 <script>
 $( function() {
   var $container = $('#gallery');
@@ -91,12 +83,14 @@ $( function() {
   });	 
 });
 </script>
-
-</body>
-</html>
                   """
 
-    html_gallery = []
+    html = []
+    html.append("<html>")
+    html.append(html_header)
+    html.append("<body>")
+    html.append("<div id='gallery'>")
+    
     for filepath in glob.glob(allimages):
         type = mimetypes.guess_type(filepath)[0]
         filename = os.path.split(filepath)[1]
@@ -109,20 +103,30 @@ $( function() {
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
             item = "<div class='item'><a href='%s'><img class='thumbnail' src='%s' /></a></div>"  % (filename, thumbnail)
-            html_gallery.append(item)
+            html.append(item)
         else:
             print "Skipping file %s (it's not an image)" % filepath
+    html.append('</div>')
+   
+    if not args.fullscreen:
+        html.append(html_content)
+
+    if args.sharing and not args.fullscreen:
+        html.append(html_sharing)
+   
+    if not args.fullscreen: 
+        html.append('</div>')
+
+    html.append(html_footer)
+    html.append('</div>')
+    html.append('</body>')
+    html.append('</html>')
 
     for res in resources:
         shutil.copy('resources/' + res, outpath)
 
-    if args.fullscreen:
-        html_data = html_header + '\n\t'.join(html_gallery) +  html_footer
-    else:
-        html_data = html_header + '\n\t'.join(html_gallery) + html_append +  html_footer
-
     with open (args.dir + 'index.html', 'w') as f:
-        f.write(html_data)
+        f.write('\n'.join(html))
 
 if __name__ == '__main__':
     if not args.dir:
