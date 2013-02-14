@@ -22,6 +22,8 @@ import Image as image
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--dir', help='your photos directory')
+parser.add_argument('-t', '--title', help='the title of your gallery')
+parser.add_argument('-u', '--url', help='url to be appended to your gallery')
 parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
 parser.add_argument('-s', '--sharing', help='enables social sharing features', action='store_true')
 args = parser.parse_args()
