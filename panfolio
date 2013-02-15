@@ -132,6 +132,16 @@ $(function() {
             #        is it too bad to have nested try/except?
             try:
                 i = image.open(filepath)
+
+                # TODO:
+                # if it's an animated GIF, saves its first frame
+                #try:
+                #    i.seek(1)
+                #except EOFError:
+                #    pass
+                #else:
+                #    print 'Image %s is an animated GIF, saving its first frame instead' % filepath
+
                 try:
                     exifdata = get_exif_data(i)
                     if exifdata['Orientation'] == 3:
