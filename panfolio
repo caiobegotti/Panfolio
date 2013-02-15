@@ -103,7 +103,7 @@ $(function() {
   $container.imagesLoaded(function() {
     $container.isotope({
       columnWidth: function(containerWidth) {
-        return containerWidth / 5
+        return containerWidth / 10
       }
     });
   });	 
