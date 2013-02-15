@@ -111,6 +111,15 @@ $(function() {
   });
 });
 </script>
+
+<script type="application/javascript">
+$(document).ready(function() {
+    $('.hover').bind('touchstart touchend', function(e) {
+        e.preventDefault();
+        $(this).toggleClass('touchhover');
+    });
+});
+</script>
                   """
 
     html = []
