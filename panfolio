@@ -44,7 +44,7 @@ def get_exif_data(image):
     return ret
 
 def main():
-    resources = ['default.css', 'jquery.masonry.min.js', 'jquery.lazyload.min.js']
+    resources = ['default.css', 'jquery.isotope.min.js']
     size = 256, 256
     allimages = args.dir + '/*'
     outpath = args.dir + '.panfolio'
@@ -72,10 +72,11 @@ def main():
 	<!-- default styling theme -->
 	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" />
 
-	<!-- gotta document which version of masonry works best -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script src=".panfolio/jquery.masonry.min.js" type="text/javascript"></script>
-	<script src=".panfolio/jquery.lazyload.min.js" type="text/javascript"></script>
+	<!-- <3 google -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="application/javascript"></script>
+
+	<!-- plug-ins -->
+	<script src=".panfolio/jquery.isotope.min.js" type="application/javascript"></script>
 </head>
                   """ % (html_name)
 
@@ -95,23 +96,18 @@ def main():
 		<a class="addthis_button_email"></a>
 	</div>
 	<!-- delayed loading as it's not critical -->
-	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+	<script type="application/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
                    """
     html_footer = """
-<script>
+<script type="application/javascript">
 $(function() {
   var $container = $('#gallery');
-  $container.imagesLoaded( function() {
-    $container.masonry({
-      columnWidth: function( containerWidth ) {
-        return containerWidth / 5
+  $container.imagesLoaded(function() {
+    $container.isotope({
+      columnWidth: function(containerWidth) {
+        return containerWidth / 10
       }
     });
-  });	 
-  $('.thumbnail').lazyload({
-    event: 'scroll',
-    effect: 'fadeIn',
-    appear: function(){console.log('...lazyloaded image')}
   });
 });
 </script>
@@ -126,22 +122,12 @@ $(function() {
     for filepath in glob.glob(allimages):
         type = mimetypes.guess_type(filepath)[0]
         filename = os.path.split(filepath)[1]
-        thumbnail = '.panfolio/%s.jpg' % os.path.splitext(filename)[0]
+        thumbnail = '.panfolio/%s.png' % os.path.splitext(filename)[0]
         if type and 'image' in type:
             # FIXME: not the prettiest try/except around...
             #        is it too bad to have nested try/except?
             try:
                 i = image.open(filepath)
-
-                # TODO:
-                # if it's an animated GIF, saves its first frame
-                #try:
-                #    i.seek(1)
-                #except EOFError:
-                #    pass
-                #else:
-                #    print 'Image %s is an animated GIF, saving its first frame instead' % filepath
-
                 try:
                     exifdata = get_exif_data(i)
                     if exifdata['Orientation'] == 3:
@@ -153,10 +139,10 @@ $(function() {
                 except KeyError:
                     print 'No orientation found in EXIF tags of %s' % filepath
                 i.thumbnail(size, image.ANTIALIAS)
-                i.save(args.dir + thumbnail, 'JPEG', quality=100, progressive=True)
+                i.save(args.dir + thumbnail, 'PNG')
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
-            item = "\t<div class='item'><a href='%s'><img class='thumbnail' src='' data-original='%s' /></a></div>" % (filename, thumbnail)
+            item = "\t<div class='item'><a href='%s'><img class='thumbnail' src='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QIPDAYMFiH0rgAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAANSURBVAjXY2BgYGAAAAAFAAFe8yo6AAAAAElFTkSuQmCC' data-original='%s' /></a></div>" % (filename, thumbnail)
 
             html.append(item)
         else:
