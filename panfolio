@@ -44,7 +44,7 @@ def get_exif_data(image):
     return ret
 
 def main():
-    resources = ['default.css', 'jquery.masonry.min.js', 'jquery.lazyload.min.js']
+    resources = ['default.css', 'jquery.masonry.min.js']
     size = 256, 256
     allimages = args.dir + '/*'
     outpath = args.dir + '.panfolio'
@@ -75,7 +75,6 @@ def main():
 	<!-- gotta document which version of masonry works best -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src=".panfolio/jquery.masonry.min.js" type="text/javascript"></script>
-	<script src=".panfolio/jquery.lazyload.min.js" type="text/javascript"></script>
 </head>
                   """ % (html_name)
 
@@ -108,11 +107,6 @@ $(function() {
       }
     });
   });	 
-  $('.thumbnail').lazyload({
-    event: 'scroll',
-    effect: 'fadeIn',
-    appear: function(){console.log('...lazyloaded image')}
-  });
 });
 </script>
                   """
@@ -156,7 +150,7 @@ $(function() {
                 i.save(args.dir + thumbnail, 'JPEG', quality=100, progressive=True)
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
-            item = "\t<div class='item'><a href='%s'><img class='thumbnail' src='' data-original='%s' /></a></div>" % (filename, thumbnail)
+            item = "\t<div class='item'><a href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
 
             html.append(item)
         else:
