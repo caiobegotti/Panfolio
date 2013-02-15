@@ -27,8 +27,8 @@ h1 {
     margin: 0%;
 }
 
-.addthis_toolbox {
-    padding-left: 5%;
+p, .addthis_toolbox {
+    padding-left: 4%;
 }
 
 h1:hover,
@@ -48,7 +48,6 @@ a:link {
 p {
     margin: 0%;
     font-size: 200%;
-    padding-left: 5%;
 }
 
 .item:hover {
