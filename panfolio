@@ -146,7 +146,8 @@ $(function() {
                 i.save(args.dir + thumbnail, 'JPEG', quality=100, progressive=True)
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
-            item = "\t<div class='item'><a href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
+            item = "\t<div class='item'><a href='%s'><img class='thumbnail' src='' data-original='%s' /></a></div>" % (filename, thumbnail)
+
             html.append(item)
         else:
             print "Skipping file %s (it's not an image)" % filepath
