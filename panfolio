@@ -68,14 +68,14 @@ def main():
     html_header = """
 <head>
 	<title>%s</title>
+	
+	<!-- default styling theme -->
+	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" />
 
 	<!-- gotta document which version of masonry works best -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src=".panfolio/jquery.masonry.min.js" type="text/javascript"></script>
 	<script src=".panfolio/jquery.lazyload.min.js" type="text/javascript"></script>
-
-	<!-- default styling theme -->
-	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" />
 </head>
                   """ % (html_name)
 
