@@ -45,7 +45,7 @@ def get_exif_data(image):
 
 def main():
     resources = ['default.css', 'jquery.isotope.min.js']
-    size = 256, 256
+    size = 128, 128
     allimages = args.dir + '/*'
     outpath = args.dir + '.panfolio'
     if not os.path.exists(outpath):
