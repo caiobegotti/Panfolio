@@ -120,22 +120,12 @@ $(function() {
     for filepath in glob.glob(allimages):
         type = mimetypes.guess_type(filepath)[0]
         filename = os.path.split(filepath)[1]
-        thumbnail = '.panfolio/%s.jpg' % os.path.splitext(filename)[0]
+        thumbnail = '.panfolio/%s.png' % os.path.splitext(filename)[0]
         if type and 'image' in type:
             # FIXME: not the prettiest try/except around...
             #        is it too bad to have nested try/except?
             try:
                 i = image.open(filepath)
-
-                # TODO:
-                # if it's an animated GIF, saves its first frame
-                #try:
-                #    i.seek(1)
-                #except EOFError:
-                #    pass
-                #else:
-                #    print 'Image %s is an animated GIF, saving its first frame instead' % filepath
-
                 try:
                     exifdata = get_exif_data(i)
                     if exifdata['Orientation'] == 3:
@@ -147,7 +137,7 @@ $(function() {
                 except KeyError:
                     print 'No orientation found in EXIF tags of %s' % filepath
                 i.thumbnail(size, image.ANTIALIAS)
-                i.save(args.dir + thumbnail, 'JPEG', quality=100, progressive=True)
+                i.save(args.dir + thumbnail, 'PNG')
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
             item = "\t<div class='item'><a href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
