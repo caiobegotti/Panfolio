@@ -142,7 +142,7 @@ $(function() {
                 i.save(args.dir + thumbnail, 'PNG')
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
-            item = "\t<div class='item'><a href='%s'><img class='thumbnail' src='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QIPDAYMFiH0rgAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAANSURBVAjXY2BgYGAAAAAFAAFe8yo6AAAAAElFTkSuQmCC' data-original='%s' /></a></div>" % (filename, thumbnail)
+            item = "\t<div class='item'><a href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
 
             html.append(item)
         else:
