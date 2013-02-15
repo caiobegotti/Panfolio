@@ -74,7 +74,7 @@ def main():
 
 	<!-- gotta document which version of masonry works best -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script src=".panfolio/jquery.masonry.min.js" type="text/javascript"></script>
+	<script src=".panfolio/jquery.isotope.min.js" type="text/javascript"></script>
 </head>
                   """ % (html_name)
 
@@ -100,9 +100,9 @@ def main():
 <script>
 $(function() {
   var $container = $('#gallery');
-  $container.imagesLoaded( function() {
-    $container.masonry({
-      columnWidth: function( containerWidth ) {
+  $container.imagesLoaded(function() {
+    $container.isotope({
+      columnWidth: function(containerWidth) {
         return containerWidth / 5
       }
     });
