@@ -137,7 +137,7 @@ $(function() {
                     elif exifdata['Orientation'] == 8:
                         i = i.transpose(image.ROTATE_90)
                 except KeyError:
-                    print 'No orientation found in EXIF tags of %s' % filepath
+                    print 'No EXIF orientation found in %s' % filepath
                 i.thumbnail(size, image.ANTIALIAS)
                 i.save(args.dir + thumbnail, 'PNG')
             except IOError:
