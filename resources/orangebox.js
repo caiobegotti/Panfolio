@@ -34,7 +34,8 @@ if (typeof oB !== 'undefined') {
                 slideshowTimer: 3000,
                 streamItems: 10,
                 logging: false,
-                checkAlias: true
+                checkAlias: true,
+                noImages: false
             },
             methods: {
                 init: function (o) {
@@ -414,10 +415,17 @@ if (typeof oB !== 'undefined') {
                         }
                     }
                     if (oB.settings.showClose) {
-                        $('#ob_content').append($('<div title="close" class="ob_controls ob_cs" id="ob_close"></div>').click(function (e) {
-                            e.stopPropagation();
-                            oB.methods.destroy();
-                        }));
+                        if(oB.settings.noImages) {
+                            $('#ob_content').append($('<div title="close" class="ob_controls ob_cs" id="ob_close_text">&#x02297;</div>').click(function (e) {
+                                e.stopPropagation();
+                                oB.methods.destroy();
+                            }));
+                        } else {
+                            $('#ob_content').append($('<div title="close" class="ob_controls ob_cs" id="ob_close"></div>').click(function (e) {
+                                e.stopPropagation();
+                                oB.methods.destroy();
+                            }));
+                        }
                     }
 
                     //Update Navigation
@@ -873,7 +881,11 @@ if (typeof oB !== 'undefined') {
                     }
                 },
                 showLoad: function (x) {
-                    var ob_load = $('<div id="ob_load"></div>').hide();
+                    if(oB.settings.noImages) {
+                        var ob_load = $('<div id="ob_load ob_load_text">&#9684;</div>').hide();
+                    } else {
+                        var ob_load = $('<div id="ob_load"></div>').hide();
+                    }
                     if ($('#ob_load').length > 0 || x) {
                         clearTimeout(oB.loadTimer);
                         $('#ob_load').remove();

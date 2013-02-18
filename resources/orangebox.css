@@ -74,6 +74,9 @@
 	line-height:1.625em;
 }
 #ob_load {
+	background:url(loading.gif) no-repeat center;
+}
+#ob_load,#ob_load_text {
 	-moz-border-radius:5px;
 	background:url(loading.gif) no-repeat center;
 	background-color:#fff;
@@ -95,6 +98,14 @@
 }
 #ob_close {
 	background:url(buttons.png);
+}
+#ob_close_text,#ob_right-ico_text,#ob_left-ico_text,#ob_load_text {
+	color: #fff;
+	font-size: 250%;
+	text-shadow: 1px 1px 1px #000;
+	filter: dropshadow(color=#000, offx=1, offy=1);
+}
+#ob_close, #ob_close_text {
 	cursor:pointer;
 	height:30px;
 	left:-26px;
@@ -124,7 +135,7 @@
 }
 #ob_left { left:-53px; }
 #ob_right { right:-53px; }
-#ob_left-ico,#ob_right-ico {
+#ob_left-ico,#ob_right-ico,#ob_right-ico_text,#ob_left-ico_text {
 	cursor:pointer;
 	display:block;
 	height:30px;
