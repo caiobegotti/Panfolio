@@ -16,6 +16,7 @@ Pros
 - your pictures matter, no cluttering
 - addthis.com's support for sharing photos
 - automagically rotates thumbnails
+- a minimalist lightbox
 - elegant!
 
 Cons
@@ -30,4 +31,3 @@ Pending
 - thumbnails caching, maybe?
 - support sub-directories?
 - infinite scroll?
-- lightbox?
