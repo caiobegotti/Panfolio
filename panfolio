@@ -161,7 +161,7 @@ $(document).ready(function() {
                 i.save(args.dir + thumbnail, 'PNG')
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
-            item = "\t<div class='item'><a data-ob='lightbox' href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
+            item = "\t<div class='item'><a data-ob='lightbox[panfolio]' href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
 
             html.append(item)
         else:
