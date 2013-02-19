@@ -374,7 +374,7 @@ if (typeof oB !== 'undefined') {
                                 oB.methods.navigate(1);
                             }
                         })
-                        navLeft = $('<a class="ob_nav" id="ob_left"><span class="ob_controls" id="ob_left-ico ob_right-ico_text">&#8676;</span></a>').click(function (e) {
+                        navLeft = $('<a class="ob_nav" id="ob_left"><span class="ob_controls" id="ob_left-ico ob_left-ico_text">&#8676;</span></a>').click(function (e) {
                             if (oB.progress === null) {
                                 oB.methods.slideshowPause();
                                 e.stopPropagation();
