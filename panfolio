@@ -44,7 +44,7 @@ def get_exif_data(image):
     return ret
 
 def main():
-    resources = ['default.css', 'jquery.isotope.min.js', 'orangebox.css', 'orangebox.min.js']
+    resources = ['default.css', 'jquery.isotope.min.js', 'orangebox.css', 'orangebox.js']
     size = 128, 128
     args.dir = args.dir + '/'
     allimages = args.dir + '/*'
@@ -79,7 +79,7 @@ def main():
 
 	<!-- plug-ins -->
 	<script src=".panfolio/jquery.isotope.min.js" type="application/javascript"></script>
-	<script src=".panfolio/orangebox.min.js" type="application/javascript"></script>
+	<script src=".panfolio/orangebox.js" type="application/javascript"></script>
 </head>
                   """ % (html_name)
 
@@ -127,6 +127,8 @@ $(document).ready(function() {
 <script type="application/javascript">
     oB.settings.contentBorderWidth= 1;
     oB.settings.fadeControls = false;
+    oB.settings.showNav = true;
+    oB.settings.noImages = true;
 </script>
                   """
 
