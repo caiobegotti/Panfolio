@@ -352,6 +352,36 @@ if (typeof oB !== 'undefined') {
                     }
                 },
                 showContent: function (obj, initial) {
+                    var navRight = $('<a class="ob_nav" id="ob_right"><span class="ob_controls" id="ob_right-ico"></span></a>').click(function (e) {
+                        if (oB.progress === null) {
+                            oB.methods.slideshowPause();
+                            e.stopPropagation();
+                            oB.methods.navigate(1);
+                        }
+                    })
+                    var navLeft = $('<a class="ob_nav" id="ob_left"><span class="ob_controls" id="ob_left-ico"></span></a>').click(function (e) {
+                        if (oB.progress === null) {
+                            oB.methods.slideshowPause();
+                            e.stopPropagation();
+                            oB.methods.navigate(-1);
+                        }
+                    })
+                    if(oB.settings.noImages) {
+                        navRight = $('<a class="ob_nav" id="ob_right"><span class="ob_controls" id="ob_right-ico ob_right-ico_text">&#8677;</span></a>').click(function (e) {
+                            if (oB.progress === null) {
+                                oB.methods.slideshowPause();
+                                e.stopPropagation();
+                                oB.methods.navigate(1);
+                            }
+                        })
+                        navLeft = $('<a class="ob_nav" id="ob_left"><span class="ob_controls" id="ob_left-ico ob_right-ico_text">&#8676;</span></a>').click(function (e) {
+                            if (oB.progress === null) {
+                                oB.methods.slideshowPause();
+                                e.stopPropagation();
+                                oB.methods.navigate(-1);
+                            }
+                        })
+                    }
                     var href = obj.data('oB').href,
                         title = obj.data('oB').title,
                         contentType = obj.data('oB').contentType,
@@ -359,20 +389,8 @@ if (typeof oB !== 'undefined') {
                         ob_caption = '',
                         ob_caption_text = '',
                         tag = href,
-                        navRight = $('<a class="ob_nav" id="ob_right"><span class="ob_controls" id="ob_right-ico"></span></a>').click(function (e) {
-                            if (oB.progress === null) {
-                                oB.methods.slideshowPause();
-                                e.stopPropagation();
-                                oB.methods.navigate(1);
-                            }
-                        }),
-                        navLeft = $('<a class="ob_nav" id="ob_left"><span class="ob_controls" id="ob_left-ico"></span></a>').click(function (e) {
-                            if (oB.progress === null) {
-                                oB.methods.slideshowPause();
-                                e.stopPropagation();
-                                oB.methods.navigate(-1);
-                            }
-                        }),
+                        navRight,
+                        navLeft,
                         dotnav = $('<ul id="ob_dots"></ul>').click(function (e) { e.stopPropagation(); }),
                         ob_link;
                     if(obj.data('oB').caption) {
