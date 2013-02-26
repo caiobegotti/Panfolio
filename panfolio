@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from __future__ import division
+
 __license__   = 'All original files are public domain'
 __author__    = 'Caio Begotti'
 __email__     = 'caio1982@gmail.com'
@@ -25,6 +27,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-d', '--dir', help='your photos directory')
 parser.add_argument('-n', '--name', help='the name of your gallery')
 parser.add_argument('-u', '--url', help='url to be appended to your gallery')
+parser.add_argument('-b', '--blurry', help='mark images whose blurry factor is above N')
 parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
 parser.add_argument('-s', '--sharing', help='enables social sharing features', action='store_true')
 args = parser.parse_args()
@@ -42,6 +45,12 @@ def get_exif_data(image):
     except IOError:
         print 'IOERROR ' + image
     return ret
+
+def blur_factor(image):
+    exifdata = get_exif_data(image)
+    fl = exifdata['FocalLength']
+    et = exifdata['ExposureTime']
+    return ( et[0] / et[1] ) / ( 1 / ( fl[0] / fl[1] ) )
 
 def main():
     resources = ['default.css', 'jquery.isotope.min.js', 'orangebox.css', 'orangebox.js']
@@ -116,15 +125,6 @@ $(function() {
 </script>
 
 <script type="application/javascript">
-$(document).ready(function() {
-    $('.hover').bind('touchstart touchend', function(e) {
-        e.preventDefault();
-        $(this).toggleClass('touchhover');
-    });
-});
-</script>
-
-<script type="application/javascript">
     oB.settings.contentBorderWidth= 1;
     oB.settings.fadeControls = false;
     oB.settings.showNav = true;
@@ -161,8 +161,15 @@ $(document).ready(function() {
                 i.save(args.dir + thumbnail, 'PNG')
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
-            item = "\t<div class='item'><a data-ob='lightbox[panfolio]' href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
 
+            item = ""
+            if args.blurry:
+                n = blur_factor(i)
+                if float(n) > float(args.blurry):
+                    print 'Image %s seems blurry (factor %s)' % (filepath, n)
+                    item = "\t<div class='item'><a data-ob='lightbox[panfolio]' href='%s'><img class='thumbnail blurry' src='%s' /></a></div>" % (filename, thumbnail)
+                else:
+                    item = "\t<div class='item'><a data-ob='lightbox[panfolio]' href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
             html.append(item)
         else:
             print "Skipping file %s (it's not an image)" % filepath
