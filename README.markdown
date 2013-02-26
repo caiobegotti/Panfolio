@@ -8,6 +8,23 @@ Demo
 
 Wanna see how Panfolio looks like? Check it out: http://caio.ueberalles.net/panfolio-demo
 
+Usage
+=====
+
+```
+demo@localhost$ ./panfolio
+usage: panfolio [-h] [-d DIR] [-n NAME] [-u URL] [-b BLURRY] [-f] [-s]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d DIR, --dir DIR     your photos directory
+  -n NAME, --name NAME  the name of your gallery
+  -u URL, --url URL     url to be appended to your gallery
+  -b N, --blurry N      mark images whose blurry factor is above N
+  -f, --fullscreen      makes a full screen pictures-only gallery
+  -s, --sharing         enables social sharing features
+```
+
 Pros
 ====
 
