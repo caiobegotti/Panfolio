@@ -168,8 +168,8 @@ $(function() {
                 if float(n) > float(args.blurry):
                     print 'Image %s seems blurry (factor %s)' % (filepath, n)
                     item = "\t<div class='item'><a data-ob='lightbox[panfolio]' href='%s'><img class='thumbnail blurry' src='%s' /></a></div>" % (filename, thumbnail)
-                else:
-                    item = "\t<div class='item'><a data-ob='lightbox[panfolio]' href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
+            else:
+                item = "\t<div class='item'><a data-ob='lightbox[panfolio]' href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
             html.append(item)
         else:
             print "Skipping file %s (it's not an image)" % filepath
