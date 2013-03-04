@@ -192,7 +192,6 @@
 	text-align: right;
 }
 #at_hover > *, .at-whatsthis > *, .atm-f, .atm-i {
-	border: 1px solid red;
 	text-shadow: none;
 	filter: dropshadow(none);
 }
