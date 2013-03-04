@@ -129,8 +129,15 @@ $(function() {
     oB.settings.fadeControls = false;
     oB.settings.showNav = true;
     oB.settings.noImages = true;
+    oB.settings.addThis = false;
 </script>
                   """
+
+    html_per_photo_sharing = """
+<script type="application/javascript">
+    oB.settings.addThis = true;
+</script>
+                             """
 
     html = []
     html.append("<html>")
@@ -184,6 +191,10 @@ $(function() {
         print 'Fullscreen option has precedence over sharing features and others'
 
     html.append(html_footer)
+
+    if args.sharing:
+        html.append(html_per_photo_sharing)
+
     html.append('</body>')
     html.append('</html>')
 
