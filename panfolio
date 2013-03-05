@@ -132,7 +132,6 @@ $(function() {
     oB.settings.contentBorderWidth= 1;
     oB.settings.fadeControls = false;
     oB.settings.showNav = true;
-    oB.settings.showDots = true;
     oB.settings.addThis = %s;
 </script>
                   """ % html_addthis_per_photo
