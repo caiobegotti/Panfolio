@@ -53,7 +53,7 @@ def blur_factor(image):
     return ( et[0] / et[1] ) / ( 1 / ( fl[0] / fl[1] ) )
 
 def main():
-    resources = ['default.css', 'jquery.isotope.min.js', 'orangebox.css', 'orangebox.js']
+    resources = ['default.css', 'jquery.isotope.min.js', 'orangebox.css', 'orangebox.min.js']
     size = 128, 128
     args.dir = args.dir + '/'
     allimages = args.dir + '/*'
@@ -92,7 +92,7 @@ def main():
 
 	<!-- plug-ins -->
 	<script src=".panfolio/jquery.isotope.min.js" type="application/javascript"></script>
-	<script src=".panfolio/orangebox.js" type="application/javascript"></script>
+	<script src=".panfolio/orangebox.min.js" type="application/javascript"></script>
 </head>
                   """ % (html_name)
 
