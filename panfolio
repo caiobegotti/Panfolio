@@ -99,7 +99,7 @@ def main():
     html_content = """
 <div id="content">
 	<h1>&#9618; %s</h1>
-	<p><a href="%s">%s</a></p>
+	<p><a class="links" href="%s">%s</a></p>
                    """ % (html_name, html_url, html_url)
     html_sharing = """
 	<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
@@ -132,7 +132,6 @@ $(function() {
     oB.settings.contentBorderWidth= 1;
     oB.settings.fadeControls = false;
     oB.settings.showNav = true;
-    oB.settings.noImages = true;
     oB.settings.showDots = true;
     oB.settings.addThis = %s;
 </script>
