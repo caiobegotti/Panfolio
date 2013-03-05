@@ -48,4 +48,3 @@ Pending
 - thumbnails caching, maybe?
 - support sub-directories?
 - infinite scroll? or not?
-- thumbnails are blurred?
