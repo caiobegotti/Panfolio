@@ -72,12 +72,8 @@
 	line-height:1.625em;
 }
 #ob_load {
-	background:url(loading.gif) no-repeat center;
-}
-#ob_load,#ob_load_text {
+	text-align: center
 	-moz-border-radius:5px;
-	background:url(loading.gif) no-repeat center;
-	background-color:#fff;
 	border-radius:5px;
 	height:40px;
 	left:50%;
@@ -93,9 +89,6 @@
 	padding:10px;
 }
 #ob_close {
-	background:url(buttons.png);
-}
-#ob_close, #ob_close_text {
 	cursor:pointer;
 	height:30px;
 	left:-26px;
@@ -103,8 +96,6 @@
 	top:-26px;
 	width:30px;
 	z-index:1005;
-}
-#ob_close_text {
 	top:-16px;
 }
 #ob_title {
@@ -172,7 +163,7 @@
 }
 #ob_dots .current { background-color:#CCC!important; }
 #ob_share { margin-left:8px; }
-#ob_close_text,#ob_load_text,.ob_nav {
+#ob_close,#ob_load,.ob_nav,#ob_load {
 	color: #fff;
 	font-size: 250%;
 	text-shadow: 1px 1px 1px #000;
@@ -191,7 +182,8 @@
 #ob_left, .ob_left {
 	text-align: right;
 }
-#at_hover > *, .at-whatsthis > *, .atm-f, .atm-i {
+/*#at_hover > *, .at-whatsthis > *, .atm-f > * , .atm-i > *, .atm-s > *, .atm-s, .at-whatsthis, .at-logo {*/
+.atm-f, .atm-i, .atm-s {
 	text-shadow: none;
 	filter: dropshadow(none);
 }
