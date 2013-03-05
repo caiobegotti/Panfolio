@@ -54,7 +54,7 @@ def blur_factor(image):
 
 def main():
     resources = ['default.css', 'jquery.isotope.min.js', 'orangebox.css', 'orangebox.min.js']
-    size = 128, 128
+    size = 256, 256
     args.dir = args.dir + '/'
     allimages = args.dir + '/*'
     outpath = args.dir + '.panfolio'
@@ -168,7 +168,7 @@ $(function() {
                 except KeyError:
                     print 'No EXIF orientation found in %s' % filepath
                 i.thumbnail(size, image.ANTIALIAS)
-                i.save(args.dir + thumbnail, 'PNG')
+                i.save(args.dir + thumbnail, 'PNG', quality=100)
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
 
