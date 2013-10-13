@@ -88,12 +88,8 @@ def main():
 	<link href=".panfolio/autowidthresize.css" rel="stylesheet" type="text/css" />
 	<link href=".panfolio/demo.css" rel="stylesheet" type="text/css" />
 	<link href=".panfolio/style3.css" rel="stylesheet" type="text/css" />
+	<script type="application/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
 
-	<!-- <3 google -->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="application/javascript"></script>
-
-	<!-- plug-ins -->
-        <script src=".panfolio/orangebox.min.js" type="application/javascript"></script>
 </head>
                   """ % (html_name)
 
@@ -103,17 +99,17 @@ def main():
 	<p><a class="links" href="%s">%s</a></p>
                    """ % (html_name, html_url, html_url)
     html_sharing = """
-	<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-		<!-- which ones make in via command line flags, maybe? -->
-		<a class="addthis_button_twitter"></a>
-		<a class="addthis_button_facebook"></a>
-		<a class="addthis_button_google_plusone_share"></a>
-		<a class="addthis_button_tumblr"></a>
-		<a class="addthis_button_instapaper"></a>
-		<a class="addthis_button_email"></a>
-	</div>
                    """
     html_footer = """
+<script type="text/javascript">
+  addthis.layers({
+    'theme' : 'dark',
+    'share' : {
+      'position' : 'left',
+      'services' : 'facebook_like, google_plusone, email'
+    }   
+  });
+</script>
                   """ #% html_addthis_per_photo
 
     html_per_photo_sharing = """
