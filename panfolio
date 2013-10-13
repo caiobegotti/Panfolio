@@ -4,9 +4,8 @@
 from __future__ import division
 
 __license__   = 'All original files are public domain'
-__author__    = 'Caio Begotti'
 __email__     = 'caio1982@gmail.com'
-__credits__   = ['']
+__author__    = 'Caio Begotti'
 
 """
 Panfolio is a tiny Python script to generate a nice
@@ -87,7 +86,6 @@ def main():
 	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" />
 	<link href=".panfolio/autowidthresize.css" rel="stylesheet" type="text/css" />
 	<link href=".panfolio/style3.css" rel="stylesheet" type="text/css" />
-	<script type="application/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
 
 </head>
                   """ % (html_name)
@@ -100,15 +98,6 @@ def main():
     html_sharing = """
                    """
     html_footer = """
-<script type="text/javascript">
-  addthis.layers({
-    'theme' : 'dark',
-    'share' : {
-      'position' : 'left',
-      'services' : 'facebook_like, google_plusone, email'
-    }   
-  });
-</script>
                   """ #% html_addthis_per_photo
 
     html_per_photo_sharing = """
