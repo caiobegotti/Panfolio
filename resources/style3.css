@@ -42,7 +42,6 @@
 }
 .lb-overlay a.lb-close{
 	z-index: 999;
-	color: #fff;
 	position: absolute;
 	top: 43px;
 	left: 50%;
