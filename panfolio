@@ -168,7 +168,7 @@ def main():
 		</a>
 	</li>
 	<div class='lb-overlay' id='image-%d'>
-	<img src='%s' alt='' />
+	<a href='%s'><img src='%s' alt='' /></a>
 		<div>
 			<h3>Demo <span>/...demo.../</h3>
 			<p>Facebook — Google Plus — E-mail</p>
@@ -180,6 +180,7 @@ def main():
                        """ % (currentimage,
                               thumbnail,
                               currentimage,
+                              filename,
                               filename,
                               previousimage,
                               nextimage)
