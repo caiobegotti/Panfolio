@@ -86,7 +86,6 @@ def main():
 	<!-- default styling theme -->
 	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" />
 	<link href=".panfolio/autowidthresize.css" rel="stylesheet" type="text/css" />
-	<link href=".panfolio/demo.css" rel="stylesheet" type="text/css" />
 	<link href=".panfolio/style3.css" rel="stylesheet" type="text/css" />
 	<script type="application/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
 
