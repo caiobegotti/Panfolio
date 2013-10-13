@@ -124,7 +124,7 @@ def main():
     html.append(html_header)
     html.append("<body>")
     html.append("<div id='gallery'>")
-    html.append("<ul id='thumbnails lb-album'>")
+    html.append("<ul id='thumbnails dummy'>")
 
     currentimage = 1
     previousimage = currentimage - 1
