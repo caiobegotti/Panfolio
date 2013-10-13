@@ -1,0 +1,135 @@
+* {
+	margin: 0; padding: 0;
+	list-style-type: none;
+}
+
+#gallery {
+	margin: 0 auto;
+		column-width: auto;
+		-moz-column-width: auto;
+		-webkit-column-width: auto;
+}
+
+#thumbnails {
+	-moz-column-count: 6;
+	-moz-column-gap: 0px;
+	-webkit-column-count: 6;
+	-webkit-column-gap: 0px;
+	column-count: 6;
+	column-gap: 0px;
+		column-width: auto;
+		-moz-column-width: auto;
+		-webkit-column-width: auto;
+}
+
+#thumbnails img{
+	display: inline-block;
+	margin-bottom: 0px;
+	width: 100%;
+}
+
+#thumbnails img {
+	margin-top: -4px;
+}
+
+.nav {
+    width: 390px;
+    height: 60px;
+    margin: 0px auto;
+    font: 0.9em/60px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    color: #c0c6e0;
+}
+
+.nav a {
+    color: #c0c6e0;
+    text-decoration: none;
+}
+
+.nav a.current {
+    text-decoration: underline;
+    color: #666;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    color: #a0a4bb;
+}
+
+.nav li {
+    float: left;
+    margin: 0 20px;
+}
+
+
+@media only screen and (max-width : 1199px),
+only screen and (max-device-width : 1199px){
+	#thumbnails {
+		-moz-column-count: 5;
+		-moz-column-gap: 0px;
+		-webkit-column-count: 5;
+		-webkit-column-gap: 0px;
+		column-count: 5;
+		column-gap: 0px;
+		column-width: auto;
+		-moz-column-width: auto;
+		-webkit-column-width: auto;
+	}
+	
+	#gallery {
+	}
+}
+
+
+@media only screen and (max-width : 999px),
+only screen and (max-device-width : 999px){
+	#thumbnails {
+		-moz-column-count: 4;
+		-moz-column-gap: 0px;
+		-webkit-column-count: 4;
+		-webkit-column-gap: 0px;
+		column-count: 4;
+		column-gap: 0px;
+		column-width: auto;
+		-moz-column-width: auto;
+		-webkit-column-width: auto;
+	}
+	
+	#gallery {
+	}
+}
+
+@media only screen and (max-width : 799px),
+only screen and (max-device-width : 799px){
+	#thumbnails {
+		-moz-column-count: 3;
+		-moz-column-gap: 0px;
+		-webkit-column-count: 3;
+		-webkit-column-gap: 0px;
+		column-count: 3;
+		column-gap: 0px;
+		column-width: auto;
+		-moz-column-width: auto;
+		-webkit-column-width: auto;
+	}
+	
+	#gallery {
+	}
+}
+
+@media only screen and (max-width : 599px),
+only screen and (max-device-width : 599px){
+	#thumbnails {
+		-moz-column-count: 2;
+		-moz-column-gap: 0px;
+		-webkit-column-count: 2;
+		-webkit-column-gap: 0px;
+		column-count: 2;
+		column-gap: 0px;
+		column-width: auto;
+		-moz-column-width: auto;
+		-webkit-column-width: auto;
+	}
+	
+	#gallery {
+	}
+}
