@@ -53,7 +53,7 @@ def blur_factor(image):
     return ( et[0] / et[1] ) / ( 1 / ( fl[0] / fl[1] ) )
 
 def main():
-    resources = ['default.css', 'jquery.isotope.min.js', 'orangebox.css', 'orangebox.min.js']
+    resources = ['default.css', 'autowidthresize.css', 'demo.css', 'style3.css']
     size = 256, 256
     args.dir = args.dir + '/'
     allimages = args.dir + '/*'
@@ -85,14 +85,15 @@ def main():
 	
 	<!-- default styling theme -->
 	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" />
-	<link href=".panfolio/orangebox.css" rel="stylesheet" type="text/css" />
+	<link href=".panfolio/autowidthresize.css" rel="stylesheet" type="text/css" />
+	<link href=".panfolio/demo.css" rel="stylesheet" type="text/css" />
+	<link href=".panfolio/style3.css" rel="stylesheet" type="text/css" />
 
 	<!-- <3 google -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="application/javascript"></script>
 
 	<!-- plug-ins -->
-	<script src=".panfolio/jquery.isotope.min.js" type="application/javascript"></script>
-	<script src=".panfolio/orangebox.min.js" type="application/javascript"></script>
+        <script src=".panfolio/orangebox.min.js" type="application/javascript"></script>
 </head>
                   """ % (html_name)
 
@@ -111,35 +112,11 @@ def main():
 		<a class="addthis_button_instapaper"></a>
 		<a class="addthis_button_email"></a>
 	</div>
-	<!-- delayed loading as it's not critical -->
-	<script type="application/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js"></script>
                    """
     html_footer = """
-<script type="application/javascript">
-$(function() {
-  var $container = $('#gallery');
-  $container.imagesLoaded(function() {
-    $container.isotope({
-      columnWidth: function(containerWidth) {
-        return containerWidth / 10
-      }
-    });
-  });
-});
-</script>
-
-<script type="application/javascript">
-    oB.settings.contentBorderWidth= 1;
-    oB.settings.fadeControls = false;
-    oB.settings.showNav = true;
-    oB.settings.addThis = %s;
-</script>
-                  """ % html_addthis_per_photo
+                  """ #% html_addthis_per_photo
 
     html_per_photo_sharing = """
-<script type="application/javascript">
-    oB.settings.addThis = true;
-</script>
                              """
 
     html = []
@@ -147,7 +124,12 @@ $(function() {
     html.append(html_header)
     html.append("<body>")
     html.append("<div id='gallery'>")
-    
+    html.append("<ul id='thumbnails lb-album'>")
+
+    currentimage = 1
+    previousimage = currentimage - 1
+    nextimage = currentimage + 1
+
     for filepath in glob.glob(allimages):
         type = mimetypes.guess_type(filepath)[0]
         filename = os.path.split(filepath)[1]
@@ -177,12 +159,37 @@ $(function() {
                 n = blur_factor(i)
                 if float(n) > float(args.blurry):
                     print 'Image %s seems blurry (factor %s)' % (filepath, n)
-                    item = "\t<div class='item'><a data-ob='lightbox[panfolio]' href='%s'><img class='thumbnail blurry' src='%s' /></a></div>" % (filename, thumbnail)
+                    item = "\t<img class='thumbnail blurry' src='%s' />" % (thumbnail)
             else:
-                item = "\t<div class='item'><a data-ob='lightbox[panfolio]' href='%s'><img class='thumbnail' src='%s' /></a></div>" % (filename, thumbnail)
+                item = """
+	<li>
+		<a href='#image-%d'>
+			<img src='%s' alt=''/>
+		</a>
+	</li>
+	<div class='lb-overlay' id='image-%d'>
+	<img src='%s' alt='' />
+		<div>
+			<h3>Demo <span>/...demo.../</h3>
+			<p>Facebook — Google Plus — E-mail</p>
+			<a href='#image-%d' class='lb-prev'>&#8676;</a>
+			<a href='#image-%d' class='lb-next'>&#8677;</a>
+		</div>
+		<a href='#page' class='lb-close'>&#x02297;</a>
+	</div>
+                       """ % (currentimage,
+                              thumbnail,
+                              currentimage,
+                              filename,
+                              previousimage,
+                              nextimage)
             html.append(item)
+            currentimage += 1
+            nextimage = currentimage + 1
+            previousimage = currentimage - 1
         else:
             print "Skipping file %s (it's not an image)" % filepath
+    html.append('</ul>')
     html.append('</div>')
    
     if not args.fullscreen:
