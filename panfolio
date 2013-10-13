@@ -119,8 +119,6 @@ def main():
         filename = os.path.split(filepath)[1]
         thumbnail = '.panfolio/%s.png' % os.path.splitext(filename)[0]
         if type and 'image' in type:
-            # FIXME: not the prettiest try/except around...
-            #        is it too bad to have nested try/except?
             try:
                 i = image.open(filepath)
                 try:
