@@ -53,7 +53,8 @@ def blur_factor(image):
 
 def main():
     resources = ['default.css', 'autowidthresize.css', 'style3.css']
-    size = 256, 256
+    thumbnail_size = 256, 256
+    preview_size = 512, 512
     args.dir = args.dir + '/'
     allimages = args.dir + '/*'
     outpath = args.dir + '.panfolio'
@@ -117,7 +118,8 @@ def main():
     for filepath in glob.glob(allimages):
         type = mimetypes.guess_type(filepath)[0]
         filename = os.path.split(filepath)[1]
-        thumbnail = '.panfolio/%s.png' % os.path.splitext(filename)[0]
+        thumbnail = '.panfolio/thumbnail_%s.png' % os.path.splitext(filename)[0]
+        preview = '.panfolio/preview_%s.png' % os.path.splitext(filename)[0]
         if type and 'image' in type:
             try:
                 i = image.open(filepath)
@@ -131,7 +133,15 @@ def main():
                         i = i.transpose(image.ROTATE_90)
                 except KeyError:
                     print 'No EXIF orientation found in %s' % filepath
-                i.thumbnail(size, image.ANTIALIAS)
+
+                # this is not pretty but as long no major browsers support
+                # image-orientation through css i don't know how to fix that
+                # without using javascript, and i'd rather have the gallery
+                # looking good than saving a few kilobytes of extra images
+                i.thumbnail(preview_size, image.ANTIALIAS)
+                i.save(args.dir + preview, 'PNG', quality=100)
+
+                i.thumbnail(thumbnail_size, image.ANTIALIAS)
                 i.save(args.dir + thumbnail, 'PNG', quality=100)
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
@@ -149,21 +159,21 @@ def main():
 			<img src='%s' alt=''/>
 		</a>
 	</li>
-	<div class='lb-overlay' id='image-%d'>
-	<a href='%s'><img src='%s' alt='' /></a>
-		<div>
-			<h3>Demo <span>/...demo.../</h3>
-			<p>Facebook — Google Plus — E-mail</p>
-			<a href='#image-%d' class='lb-prev'>&#8676;</a>
-			<a href='#image-%d' class='lb-next'>&#8677;</a>
+		<div class='lb-overlay' id='image-%d'>
+			<a href='%s'><img src='%s' alt='' /></a>
+			<div>
+				<h3>Demo <span>/...demo.../</h3>
+				<p>Facebook — Google Plus — E-mail</p>
+				<a href='#image-%d' class='lb-prev'>&#8676;</a>
+				<a href='#image-%d' class='lb-next'>&#8677;</a>
+			</div>
+			<a href='#page' class='lb-close'>&#x02297;</a>
 		</div>
-		<a href='#page' class='lb-close'>&#x02297;</a>
-	</div>
                        """ % (currentimage,
                               thumbnail,
                               currentimage,
                               filename,
-                              filename,
+                              preview,
                               previousimage,
                               nextimage)
             html.append(item)
