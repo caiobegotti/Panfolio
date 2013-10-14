@@ -21,7 +21,7 @@
 	column-width: auto;
 }
 
-#thumbnails img{
+#thumbnails img {
 	display: inline-block;
 	margin-bottom: 0px;
 	width: 100%;
@@ -32,7 +32,7 @@
 }
 
 @media only screen and (max-width : 1199px),
-only screen and (max-device-width : 1199px){
+only screen and (max-device-width : 1199px) {
 	#thumbnails {
 		-moz-column-count: 5;
 		-webkit-column-count: 5;
@@ -42,7 +42,7 @@ only screen and (max-device-width : 1199px){
 
 
 @media only screen and (max-width : 999px),
-only screen and (max-device-width : 999px){
+only screen and (max-device-width : 999px) {
 	#thumbnails {
 		-moz-column-count: 4;
 		-webkit-column-count: 4;
@@ -51,7 +51,7 @@ only screen and (max-device-width : 999px){
 }
 
 @media only screen and (max-width : 799px),
-only screen and (max-device-width : 799px){
+only screen and (max-device-width : 799px) {
 	#thumbnails {
 		-moz-column-count: 3;
 		-webkit-column-count: 3;
@@ -60,7 +60,7 @@ only screen and (max-device-width : 799px){
 }
 
 @media only screen and (max-width : 599px),
-only screen and (max-device-width : 599px){
+only screen and (max-device-width : 599px) {
 	#thumbnails {
 		-moz-column-count: 2;
 		-webkit-column-count: 2;
