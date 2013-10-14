@@ -52,7 +52,7 @@ def blur_factor(image):
     return ( et[0] / et[1] ) / ( 1 / ( fl[0] / fl[1] ) )
 
 def main():
-    resources = ['default.css', 'autowidthresize.css', 'style3.css']
+    resources = ['default.css', 'mosaic.css', 'lightbox.css']
     thumbnail_size = 256, 256
     preview_size = 512, 512
     args.dir = args.dir + '/'
@@ -85,8 +85,8 @@ def main():
 	
 	<!-- default styling theme -->
 	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" />
-	<link href=".panfolio/autowidthresize.css" rel="stylesheet" type="text/css" />
-	<link href=".panfolio/style3.css" rel="stylesheet" type="text/css" />
+	<link href=".panfolio/mosaic.css" rel="stylesheet" type="text/css" />
+	<link href=".panfolio/lightbox.css" rel="stylesheet" type="text/css" />
 
 </head>
                   """ % (html_name)
