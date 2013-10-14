@@ -1,4 +1,4 @@
-.lb-overlay{
+.overlay{
 	width: 0px;
 	height: 0px;
 	position: fixed;
@@ -10,37 +10,37 @@
 	text-align: center;
 	background: rgb(200,200,200);
 }
-.lb-overlay > div{
+.overlay > div{
 	position: relative;
 	color: rgba(27,54,81,0.8);
 	width: 550px;
 	height: 80px;
 	margin: 40px auto 0px auto;
 }
-.lb-overlay div h3,
-.lb-overlay div p{
+.overlay div h3,
+.overlay div p{
 	padding: 0px 20px;
 	width: 200px;
 	height: 60px;
 }
-.lb-overlay div h3{
+.overlay div h3{
 	float: left;
 	text-align: right;
 	border-right: 1px solid rgba(27,54,81,0.4);
 }
-.lb-overlay div h3 span,
-.lb-overlay div p{
+.overlay div h3 span,
+.overlay div p{
 }
-.lb-overlay div h3 span{
+.overlay div h3 span{
 	display: block;
 	line-height: 6px;
 }
-.lb-overlay div p{
+.overlay div p{
 	text-align: left;
 	float: left;
 	width: 260px;
 }
-.lb-overlay a.lb-close{
+.overlay a.close{
 	z-index: 999;
 	position: absolute;
 	top: 43px;
@@ -50,7 +50,7 @@
 	overflow: hidden;
 	margin-left: -25px;
 }
-.lb-overlay img{
+.overlay img{
 	/* height: 100%; For Opera max-height does not seem to work */
 	height: 100%;
 	max-height: 100%;
@@ -58,42 +58,42 @@
 	max-width: auto !important;
 	position: relative;
 }
-.lb-prev, .lb-next{
+.prev, .next{
 	position: absolute;
 	top: -32px;
 	width: 24px;
 	height: 25px;
 	left: 50%;
 }
-.lb-prev:hover, .lb-next:hover{
+.prev:hover, .next:hover{
 }
-.lb-prev{
+.prev{
 	margin-left: -30px;
 }
-.lb-next{
+.next{
 	margin-left: 6px;
 }
-.lb-overlay:target {
+.overlay:target {
 	width: auto;
 	height: auto;
 	bottom: 0px;
 	right: 0px;
 	padding: 80px 100px 120px 100px;
 }
-.lb-overlay:target img,
-.lb-overlay:target a.lb-close{
+.overlay:target img,
+.overlay:target a.close{
 }
 /* 
 	100% Height for Opera as the max-height seems to be ignored, not optimal for large screens 
 	http://bricss.net/post/11230266445/css-hack-to-target-opera 
 */
-x:-o-prefocus, .lb-overlay img {
+x:-o-prefocus, .overlay img {
     height: 100%;
 }
 
 /* debugging
-.lb-overlay {border: 1px solid red;}
-.lb-overlay img {border: 1px solid blue;}
-.lb-overlay > div {border: 1px solid green;}
-.lb-overlay > div > * {border: 1px solid purple;}
+.overlay {border: 1px solid red;}
+.overlay img {border: 1px solid blue;}
+.overlay > div {border: 1px solid green;}
+.overlay > div > * {border: 1px solid purple;}
 */
