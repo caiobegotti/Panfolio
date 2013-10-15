@@ -156,15 +156,15 @@ def main():
                 item = """
 	<li>
 		<a href='#image-%d'>
-			<img src='%s' alt=''/>
+			<img src='%s' alt='thumbnail' />
 		</a>
 	</li>
 		<div class='overlay' id='image-%d'>
-			<a href='%s'><img src='%s' alt='' /></a>
+			<a href='%s'><img src='%s' alt='mid-res preview' /></a>
 			<div>
 				<p id='sharing'>
-					<span id='facebook'>Fb</span>
-					<span id='plus'>G+</span>
+					<span id='facebook'>Facebook</span>
+					<span id='plus'>Google+</span>
 					<span id='email'>E-mail</span>
 				</p>
 				<a href='#image-%d' class='prev'>&#8676;</a>
