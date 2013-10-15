@@ -31,6 +31,9 @@ parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-onl
 parser.add_argument('-s', '--sharing', help='enables social sharing features', action='store_true')
 args = parser.parse_args()
 
+DEFAULT_URL = 'http://...'
+DEFAULT_TITLE = 'Demo'
+
 # http://www.endlesslycurious.com/2011/05/11/extracting-image-exif-data-with-python/
 def get_exif_data(image):
     ret = {}
@@ -65,13 +68,13 @@ def main():
 
     if args.name is None:
         print 'Empty gallery name, assigning default'
-        html_name = 'Localhost'
+        html_name = DEFAULT_URL
     else:
         html_name = args.name
 
     if args.url is None:
         print 'Empty gallery URL address, assigning default'
-        html_url = 'http://127.0.0.1'
+        html_url = DEFAULT_URL
     else:
         html_url = args.url
    
@@ -94,8 +97,12 @@ def main():
     html_content = """
 <div id="content">
 	<h1>&#9618; %s</h1>
-	<p><a class="links" href="%s">%s</a></p>
-                   """ % (html_name, html_url, html_url)
+	<p>
+		<a class="links" href="%s">%s</a>
+	</p>
+                   """ % (html_name,
+                          html_url,
+                          html_url[:45] + '...')
     html_sharing = """
                    """
     html_footer = """
@@ -108,7 +115,7 @@ def main():
     html.append("<html>")
     html.append(html_header)
     html.append("<body>")
-    html.append("<div id='gallery'>")
+    html.append("<section id='gallery'>")
     html.append("<ul id='thumbnails'>")
 
     currentimage = 1
@@ -158,15 +165,17 @@ def main():
 		<a href='#image-%d'>
 			<img src='%s' alt='thumbnail' />
 		</a>
-	</li>
 		<div class='overlay' id='image-%d'>
-			<a href='%s'><img src='%s' alt='mid-res preview' /></a>
+			<a href='%s'>
+				<img src='%s' alt='mid-res preview' />
+			</a>
 			<div>
 				<a href='#image-%d' class='prev'>&#8676;</a>
 				<a href='#page' class='close'>&#x02297;</a>
 				<a href='#image-%d' class='next'>&#8677;</a>
 			</div>
 		</div>
+	</li>
                        """ % (currentimage,
                               thumbnail,
                               currentimage,
@@ -181,7 +190,7 @@ def main():
         else:
             print "Skipping file %s (it's not an image)" % filepath
     html.append('</ul>')
-    html.append('</div>')
+    html.append('</section>')
    
     if not args.fullscreen:
         html.append(html_content)
