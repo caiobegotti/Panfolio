@@ -162,8 +162,11 @@ def main():
 		<div class='overlay' id='image-%d'>
 			<a href='%s'><img src='%s' alt='' /></a>
 			<div>
-				<h3>Demo <span>/...demo.../</h3>
-				<p>Facebook — Google Plus — E-mail</p>
+				<p id='sharing'>
+					<span id='facebook'>Fb</span>
+					<span id='plus'>G+</span>
+					<span id='email'>E-mail</span>
+				</p>
 				<a href='#image-%d' class='prev'>&#8676;</a>
 				<a href='#image-%d' class='next'>&#8677;</a>
 			</div>

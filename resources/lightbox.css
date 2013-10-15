@@ -36,23 +36,12 @@ a.close:hover {
 	height: 80px;
 	margin: 40px auto 0px auto;
 }
-.overlay div h3,
 .overlay div p {
 	padding: 0px 20px;
 	width: 200px;
 	height: 60px;
 }
-.overlay div h3 {
-	float: left;
-	text-align: right;
-	border-right: 1px solid rgba(27,54,81,0.4);
-}
-.overlay div h3 span,
 .overlay div p {
-}
-.overlay div h3 span {
-	display: block;
-	line-height: 6px;
 }
 .overlay div p {
 	text-align: left;
@@ -107,6 +96,12 @@ a.close:hover {
 
 x:-o-prefocus, .overlay img {
     height: 100%;
+}
+
+#sharing {
+	width: 550px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /* debugging
