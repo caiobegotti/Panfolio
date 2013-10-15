@@ -162,22 +162,18 @@ def main():
 		<div class='overlay' id='image-%d'>
 			<a href='%s'><img src='%s' alt='mid-res preview' /></a>
 			<div>
-                       """ % (currentimage, thumbnail, currentimage, filename, preview)
-                if args.sharing:
-                    item += """
-				<p id='sharing'>
-					<span id='facebook'>Facebook</span>
-					<span id='plus'>Google+</span>
-					<span id='email'>E-mail</span>
-				</p>
-                            """
-                item += """
 				<a href='#image-%d' class='prev'>&#8676;</a>
 				<a href='#image-%d' class='next'>&#8677;</a>
 			</div>
 			<a href='#page' class='close'>&#x02297;</a>
 		</div>
-                       """ % (previousimage, nextimage)
+                       """ % (currentimage,
+                              thumbnail,
+                              currentimage,
+                              filename,
+                              preview,
+                              previousimage,
+                              nextimage)
             html.append(item)
             currentimage += 1
             nextimage = currentimage + 1

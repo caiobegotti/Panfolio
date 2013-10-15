@@ -17,8 +17,8 @@ a.close:visited,
 a.prev,
 a.next,
 a.close {
-	height: 50px;
-	font-size: 250%;
+	height: 75px;
+	font-size: 333%;
 	text-shadow: 0px 2px 1px #222;
 	color: #4d4d4d;
 }
@@ -41,16 +41,11 @@ a.close:hover {
 	width: 200px;
 	height: 60px;
 }
-#sharing {
-	width: 300px;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
+
 .overlay a.close {
 	z-index: 999;
 	position: absolute;
-	top: 30px;
+	top: 20px;
 	left: 50%;
 	overflow: hidden;
 	margin-left: -15px;
@@ -65,15 +60,15 @@ a.close:hover {
 }
 .prev, .next {
 	position: absolute;
+	width: 200px;
 	top: -45px;
-	left: 50%;
 }
 
 .prev {
-	margin-left: -30px;
+	margin-left: -225px;
 }
 .next {
-	margin-left: 6px;
+	margin-left: 25px;
 }
 
 .overlay:target {
@@ -95,31 +90,6 @@ a.close:hover {
 
 x:-o-prefocus, .overlay img {
     height: 100%;
-}
-
-#sharing span {
-	font-size: 50%;
-	font-weight: bold;
-	padding: 2.5px 5px 0px 5px;
-	margin: 2px;
-}
-
-#facebook {
-	color: lightblue;
-	border: 2px solid darkblue;
-	background-color: blue;
-}
-
-#plus {
-	color: white;
-	border: 2px solid darkred;
-	background-color: red;
-}
-
-#email {
-	color: grey;
-	border: 2px solid darkgrey;
-	background-color: lightgrey;
 }
 
 /* debugging
