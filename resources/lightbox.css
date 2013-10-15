@@ -41,12 +41,11 @@ a.close:hover {
 	width: 200px;
 	height: 60px;
 }
-.overlay div p {
-}
-.overlay div p {
-	text-align: left;
-	float: left;
-	width: 260px;
+#sharing {
+	width: 250px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 }
 .overlay a.close {
 	z-index: 999;
@@ -96,12 +95,6 @@ a.close:hover {
 
 x:-o-prefocus, .overlay img {
     height: 100%;
-}
-
-#sharing {
-	width: 550px;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 /* debugging
