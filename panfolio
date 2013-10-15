@@ -163,9 +163,9 @@ def main():
 			<a href='%s'><img src='%s' alt='mid-res preview' /></a>
 			<div>
 				<a href='#image-%d' class='prev'>&#8676;</a>
+				<a href='#page' class='close'>&#x02297;</a>
 				<a href='#image-%d' class='next'>&#8677;</a>
 			</div>
-			<a href='#page' class='close'>&#x02297;</a>
 		</div>
                        """ % (currentimage,
                               thumbnail,
