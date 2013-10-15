@@ -55,7 +55,7 @@ def blur_factor(image):
     return ( et[0] / et[1] ) / ( 1 / ( fl[0] / fl[1] ) )
 
 def main():
-    resources = ['default.css', 'mosaic.css', 'lightbox.css']
+    resources = ['normalize.css', 'default.css', 'mosaic.css', 'lightbox.css']
     thumbnail_size = 256, 256
     preview_size = 512, 512
     args.dir = args.dir + '/'
@@ -86,10 +86,10 @@ def main():
 <head>
 	<title>%s</title>
 	
-	<!-- default styling theme -->
-	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" />
-	<link href=".panfolio/mosaic.css" rel="stylesheet" type="text/css" />
-	<link href=".panfolio/lightbox.css" rel="stylesheet" type="text/css" />
+	<link href=".panfolio/normalize.css" rel="stylesheet" type="text/css" /> <!-- to reset css across browsers -->
+	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" /> <!-- default styling theme -->
+	<link href=".panfolio/mosaic.css" rel="stylesheet" type="text/css" /> <!-- to tightly align all the pictures -->
+	<link href=".panfolio/lightbox.css" rel="stylesheet" type="text/css" /> <!-- for when a picture is selected -->
 
 </head>
                   """ % (html_name)
