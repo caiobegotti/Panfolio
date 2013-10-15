@@ -32,7 +32,7 @@ parser.add_argument('-s', '--sharing', help='enables social sharing features', a
 args = parser.parse_args()
 
 DEFAULT_URL = 'http://...'
-DEFAULT_TITLE = 'Demo'
+DEFAULT_NAME = 'Demo'
 
 # http://www.endlesslycurious.com/2011/05/11/extracting-image-exif-data-with-python/
 def get_exif_data(image):
@@ -67,13 +67,13 @@ def main():
         print 'Thumbnails directory %s not empty, creation skipped' % outpath
 
     if args.name is None:
-        print 'Empty gallery name, assigning default'
-        html_name = DEFAULT_URL
+        print 'Empty gallery name, assigning default: %s' % DEFAULT_NAME
+        html_name = DEFAULT_NAME
     else:
         html_name = args.name
 
     if args.url is None:
-        print 'Empty gallery URL address, assigning default'
+        print 'Empty gallery URL address, assigning default: %s' % DEFAULT_URL
         html_url = DEFAULT_URL
     else:
         html_url = args.url
@@ -94,6 +94,10 @@ def main():
 </head>
                   """ % (html_name)
 
+    if len(html_url) > 45:
+        html_title = html_url[:45] + '...'
+    else:
+        html_title = html_url
     html_content = """
 <div id="content">
 	<h1>&#9618; %s</h1>
@@ -102,7 +106,7 @@ def main():
 	</p>
                    """ % (html_name,
                           html_url,
-                          html_url[:45] + '...')
+                          html_title)
     html_sharing = """
                    """
     html_footer = """
