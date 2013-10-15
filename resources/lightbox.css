@@ -8,11 +8,30 @@
 	padding: 0px;
 	z-index: 666;
 	text-align: center;
-	background: rgb(200,200,200);
+	background-color: #2f2f2f;
 }
+
+a.prev:visited,
+a.next:visited,
+a.close:visited,
+a.prev,
+a.next,
+a.close {
+	height: 50px;
+	font-size: 250%;
+	text-shadow: 0px 2px 1px #222;
+	color: #4d4d4d;
+}
+
+a.prev:hover,
+a.next:hover,
+a.close:hover {
+	text-shadow: 0px 1px 1px #4d4d4d;
+	color: #222;
+}
+
 .overlay > div {
 	position: relative;
-	color: rgba(27,54,81,0.8);
 	width: 550px;
 	height: 80px;
 	margin: 40px auto 0px auto;
@@ -43,12 +62,10 @@
 .overlay a.close {
 	z-index: 999;
 	position: absolute;
-	top: 43px;
+	top: 30px;
 	left: 50%;
-	width: 50px;
-	height: 23px;
 	overflow: hidden;
-	margin-left: -25px;
+	margin-left: -15px;
 }
 .overlay img {
 	/* height: 100%; For Opera max-height does not seem to work */
@@ -60,12 +77,8 @@
 }
 .prev, .next {
 	position: absolute;
-	top: -32px;
-	width: 24px;
-	height: 25px;
+	top: -45px;
 	left: 50%;
-}
-.prev:hover, .next:hover {
 }
 
 .prev {
@@ -101,4 +114,5 @@ x:-o-prefocus, .overlay img {
 .overlay img {border: 1px solid blue;}
 .overlay > div {border: 1px solid green;}
 .overlay > div > * {border: 1px solid purple;}
+a.close, a.prev, a.next {border: 1px solid yellow;}
 */
