@@ -13,6 +13,7 @@ body {
 }
 
 .links {
+	word-wrap: break-word;
 	text-decoration: none;
 }
 
@@ -62,6 +63,10 @@ p {
 #content {
 	border-bottom: 50px solid #222;
 	padding: 0% 0% 5% 5%;
+}
+
+#content p {
+	width: 75%;
 }
 
 img.blurry {

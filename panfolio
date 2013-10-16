@@ -94,10 +94,6 @@ def main():
 </head>
                   """ % (html_name)
 
-    if len(html_url) > 45:
-        html_title = html_url[:45] + '...'
-    else:
-        html_title = html_url
     html_content = """
 <div id="content">
 	<h1>&#9618; %s</h1>
@@ -106,7 +102,7 @@ def main():
 	</p>
                    """ % (html_name,
                           html_url,
-                          html_title)
+                          html_url)
     html_sharing = """
                    """
     html_footer = """
@@ -174,9 +170,9 @@ def main():
 				<img src='%s' alt='mid-res preview' />
 			</a>
 			<div>
-				<a href='#image-%d' class='prev'>&#8676;</a>
-				<a href='#page' class='close'>&#x02297;</a>
-				<a href='#image-%d' class='next'>&#8677;</a>
+				<a href='#image-%d' class='prev'>&#9664;</a>
+				<a href='#page' class='close'>x</a>
+				<a href='#image-%d' class='next'>&#9654;</a>
 			</div>
 		</div>
 	</li>
