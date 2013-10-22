@@ -91,6 +91,8 @@ def main():
 	<link href=".panfolio/mosaic.css" rel="stylesheet" type="text/css" /> <!-- to tightly align all the pictures -->
 	<link href=".panfolio/lightbox.css" rel="stylesheet" type="text/css" /> <!-- for when a picture is selected -->
 
+	<!-- i wish we could get rid of that, but seems we cannot -->
+	<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 </head>
                   """ % (html_name)
 
