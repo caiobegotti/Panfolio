@@ -13,7 +13,12 @@ body {
 }
 
 .links {
+	hyphens: auto;
 	word-wrap: break-word;
+	word-break: break-all;
+	-ms-word-break: break-all;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
 	text-decoration: none;
 }
 
