@@ -13,12 +13,16 @@
 	margin-right: auto;
 }
 
+.overlay > div {
+	width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 a.prev:visited,
 a.next:visited,
-a.close:visited,
 a.prev,
-a.next,
-a.close {
+a.next {
 	height: 75px;
 	font-size: 500%;
 	text-shadow: 0px 2px 1px #222;
@@ -28,8 +32,7 @@ a.close {
 }
 
 a.prev:hover,
-a.next:hover,
-a.close:hover {
+a.next:hover {
 	text-shadow: 0px 1px 1px #4d4d4d;
 	color: #222;
 }
@@ -49,6 +52,15 @@ a.close:hover {
 	bottom: 0px;
 	right: 0px;
 	padding: 2.5% 5% 10% 5%;
+}
+
+.close {
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	min-width: 1500px;
+	min-height: 1500px;
+	z-index: -1;
 }
 
 /* 
