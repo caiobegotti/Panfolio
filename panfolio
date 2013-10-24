@@ -97,7 +97,6 @@ def main():
 	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" /> <!-- default styling theme -->
 	<link href=".panfolio/mosaic.css" rel="stylesheet" type="text/css" /> <!-- to tightly align all the pictures -->
 	<link href=".panfolio/lightbox.css" rel="stylesheet" type="text/css" /> <!-- for when a picture is selected -->
-
 	<link href=".panfolio/fontawesome.css" rel="stylesheet" type="text/css" /> <!-- cool icons -->
 
 	<!-- i wish we could get rid of that but we can't, falls back to locally hosted file if offline -->
