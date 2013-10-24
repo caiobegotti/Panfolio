@@ -119,13 +119,12 @@ def main():
                    """
     html_footer = """
 <script type="text/javascript" language="JavaScript">
-function resize_body_height() {
-    var windowheight = $(window).height();
-    $('body').attr('style', 'height:' + windowheight + 'px;');
-}
 $(document).ready(function() {
-    resize_body_height();
-    $(window).bind('resize', function() { resize_body_height(); });
+  $(window).resize(function() {
+    var wh = $(window).height();
+    $('body').height(wh);
+    console.log(wh);
+  });
 });
 </script>
                   """ #% html_addthis_per_photo
