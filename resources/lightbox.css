@@ -58,8 +58,8 @@ a.next:hover {
 	top: 0px;
 	left: 0px;
 	position: absolute;
-	min-width: 1500px;
-	min-height: 1500px;
+	min-width: 9999px;
+	min-height: 9999px;
 	z-index: -1;
 }
 
