@@ -91,8 +91,12 @@ def main():
 	<link href=".panfolio/mosaic.css" rel="stylesheet" type="text/css" /> <!-- to tightly align all the pictures -->
 	<link href=".panfolio/lightbox.css" rel="stylesheet" type="text/css" /> <!-- for when a picture is selected -->
 
-	<!-- i wish we could get rid of that, but seems we cannot -->
-	<script src=".panfolio/jquery-2.0.3.min.js"></script>
+	<!--link href=".panfolio/debug.css" /-->
+
+	<!-- i wish we could get rid of that but we can't, falls back to locally hosted file if offline -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src=".panfolio/jquery-2.0.3.min.js"><\/script>')</script>
+
 </head>
                   """ % (html_name)
 
