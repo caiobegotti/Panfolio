@@ -60,6 +60,7 @@ def main():
                  'lightbox.css',
                  'fontawesome/fontawesome.css',
                  'fontawesome/fontawesome-webfont.woff',
+                 'fontawesome/fontawesome-webfont.eot',
                  'fontawesome/fontawesome-webfont.ttf']
     thumbnail_size = 256, 256
     preview_size = 512, 512
