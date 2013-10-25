@@ -59,9 +59,7 @@ def main():
                  'debug.css',
                  'default.css',
                  'mosaic.css',
-                 'jquery-2.0.3.min.js',
-                 'lightbox/orangebox/css/orangebox.css',
-                 'lightbox/orangebox/js/orangebox.min.js',
+                 'lightbox.css',
                  'fontawesome/fontawesome.css',
                  'fontawesome/fontawesome-webfont.woff',
                  'fontawesome/fontawesome-webfont.ttf']
@@ -98,12 +96,8 @@ def main():
 	
 	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" /> <!-- default styling theme -->
 	<link href=".panfolio/mosaic.css" rel="stylesheet" type="text/css" /> <!-- to tightly align all the pictures -->
+	<link href=".panfolio/lightbox.css" rel="stylesheet" type="text/css" /> <!-- for when a picture is selected -->
 	<link href=".panfolio/fontawesome.css" rel="stylesheet" type="text/css" /> <!-- cool icons -->
-
-	<!-- until we figure out a proper way to build lightboxes css-only, even if less featured -->
-	<link href=".panfolio/orangebox.css" rel="stylesheet" type="text/css" />
-	<script type="application/javascript" src=".panfolio/jquery-2.0.3.min.js"></script>
-	<script type="application/javascript" src=".panfolio/orangebox.min.js"></script>
 </head>
                   """ % (html_name)
 
@@ -119,10 +113,6 @@ def main():
     html_sharing = """
                    """
     html_footer = """
-<script type="application/javascript">
-oB.settings.contentBorderWidth = 0;
-oB.settings.showNav = True;
-</script>
                   """ #% html_addthis_per_photo
 
     html_per_photo_sharing = """
@@ -180,13 +170,27 @@ oB.settings.showNav = True;
             else:
                 item = """
 	<li>
-		<div>
-			<a data-ob='lightbox[panfolio]' href='%s'>
-				<img class='thumbnail' src='%s' alt='preview' />
+		<a href='#image-%d'>
+			<img src='%s' alt='thumbnail' />
+		</a>
+		<div class='overlay' id='image-%d'>
+			<a href='%s'>
+				<div class='frame' style='background-image: url(%s);'></div>
 			</a>
+			<div>
+				<a href='#image-%d' class='prev'><i class="icon icon-chevron-left"></i></a>
+				<a href='#image-%d' class='next'><i class="icon icon-chevron-right"></i></a>
+				<a href='#page' class='close'></a>
+			</div>
 		</div>
 	</li>
-                       """ % (filename, thumbnail)
+                       """ % (currentimage,
+                              thumbnail,
+                              currentimage,
+                              filename,
+                              preview,
+                              previousimage,
+                              nextimage)
             html.append(item)
             currentimage += 1
             nextimage = currentimage + 1
