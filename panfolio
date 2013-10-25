@@ -31,7 +31,7 @@ parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-onl
 parser.add_argument('-s', '--sharing', help='enables social sharing features', action='store_true')
 args = parser.parse_args()
 
-DEFAULT_URL = 'http://...'
+DEFAULT_URL = 'http://localhost'
 DEFAULT_NAME = 'Demo'
 
 # http://www.endlesslycurious.com/2011/05/11/extracting-image-exif-data-with-python/
@@ -99,9 +99,11 @@ def main():
 	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" /> <!-- default styling theme -->
 	<link href=".panfolio/mosaic.css" rel="stylesheet" type="text/css" /> <!-- to tightly align all the pictures -->
 	<link href=".panfolio/fontawesome.css" rel="stylesheet" type="text/css" /> <!-- cool icons -->
+
+	<!-- until we figure out a proper way to build lightboxes css-only, even if less featured -->
+	<link href=".panfolio/orangebox.css" rel="stylesheet" type="text/css" />
 	<script type="application/javascript" src=".panfolio/jquery-2.0.3.min.js"></script>
 	<script type="application/javascript" src=".panfolio/orangebox.min.js"></script>
-	<link href=".panfolio/orangebox.css" rel="stylesheet" type="text/css" /> <!-- for when a picture is selected -->
 </head>
                   """ % (html_name)
 
@@ -120,7 +122,6 @@ def main():
 <script type="application/javascript">
 oB.settings.contentBorderWidth = 0;
 oB.settings.showNav = True;
-oB.settings.showClose = False;
 </script>
                   """ #% html_addthis_per_photo
 
