@@ -269,8 +269,7 @@ ul.icons li [class*=" icon-"] {
     height: .75em;
   }
 }.icon-th:before		{ content: "\f021"; }
-.icon-picture:before		{ content: "\f022"; }
-.icon-chevron-left:before		{ content: "\f023"; }
-.icon-chevron-right:before		{ content: "\f024"; }
-.icon-folder-open:before		{ content: "\f025"; }
-.icon-comments-alt:before		{ content: "\f026"; }
+.icon-chevron-left:before		{ content: "\f022"; }
+.icon-chevron-right:before		{ content: "\f023"; }
+.icon-folder-open:before		{ content: "\f024"; }
+.icon-comments-alt:before		{ content: "\f025"; }
