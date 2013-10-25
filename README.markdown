@@ -1,6 +1,8 @@
 Panfolio
 --------
 
+BEWARE: as of now Panfolio is VERY BUGGY as it's under heavy changes to get rid of JavaScript stuff and it will probably not work correctly. You have been warned.
+
 Panfolio is a tiny Python script to generate a nice simple gallery of all your (say, vacations) pictures. The only reason I wrote this was to get a free coffee on @artmello, who happens to be quite lazy to organize his photos :-)
 
 Demo
