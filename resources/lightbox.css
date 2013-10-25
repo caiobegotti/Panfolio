@@ -14,21 +14,33 @@
 }
 
 .overlay > div {
-	width: 320px;
+	width: 75%;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+@media (min-width: 1024px) {
+	a.prev, a.next {
+		font-size: 444%;
+	}
+}
+
+@media only screen and (max-width : 1023px),
+only screen and (max-device-width : 320px) {
+	a.prev, a.next {
+		font-size: 222%;
+	}
+	.overlay > div {
+		margin-top: 1%;
+	}
 }
 
 a.prev:visited,
 a.next:visited,
 a.prev,
 a.next {
-	height: 75px;
-	font-size: 500%;
 	text-shadow: 0px 2px 1px #222;
 	color: #4d4d4d;
-	padding-left: 25px;
-	padding-right: 25px;
 }
 
 a.prev:hover,
@@ -38,10 +50,11 @@ a.next:hover {
 }
 
 .frame {
+	display: none;
 	padding: 0px;
 	margin: 0px;
 	width: 100%;
-	height: 100%;
+	height: 90%;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -57,6 +70,10 @@ a.next:hover {
 	bottom: 0px;
 	right: 0px;
 	padding: 2.5% 5% 10% 5%;
+}
+
+.overlay:target > a > .frame {
+	display: block;
 }
 
 .close {
