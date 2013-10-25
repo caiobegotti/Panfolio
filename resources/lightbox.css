@@ -85,11 +85,6 @@ a.next:hover {
 	z-index: -1;
 }
 
-/* 
-	100% Height for Opera as the max-height seems to be ignored, not optimal for large screens 
-	http://bricss.net/post/11230266445/css-hack-to-target-opera 
-*/
-
 x:-o-prefocus, .overlay img {
     height: 100%;
 }
