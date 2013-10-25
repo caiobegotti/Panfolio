@@ -22,13 +22,11 @@
 }
 
 #thumbnails img {
+	background-color: #222222;
 	display: inline-block;
 	margin-bottom: 0px;
-	width: 100%;
-}
-
-#thumbnails img {
 	margin-top: -5px;
+	width: 100%;
 }
 
 @media only screen and (max-width : 1199px),
