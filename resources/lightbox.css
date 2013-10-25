@@ -37,10 +37,17 @@ a.next:hover {
 	color: #222;
 }
 
+.frame {
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
 .overlay img {
-	/* height: 100%; For Opera max-height does not seem to work */
-	max-height: 100%;
-	max-width: 100%;
 	position: relative;
 }
 
