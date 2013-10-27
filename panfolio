@@ -29,11 +29,10 @@ parser.add_argument('-n', '--name', help='the name of your gallery')
 parser.add_argument('-u', '--url', help='url to be appended to your gallery')
 parser.add_argument('-b', '--blurry', help='mark images whose blurry factor is above N', metavar='N')
 parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
-parser.add_argument('-s', '--sharing', help='enables social sharing features', action='store_true')
 args = parser.parse_args()
 
-DEFAULT_URL = 'http://localhost'
-DEFAULT_NAME = 'Demo'
+HTML_URL = 'http://localhost'
+HTML_NAME = 'Demo :-)'
 
 RESOURCES = ['default.css',
              'mosaic.css',
@@ -74,6 +73,15 @@ HTML_ITEM = '''
 	</li>
 '''
 
+HTML_CONTENT = ''' 
+<div id="content">
+	<h1><i class="icon icon-th icon-5x"></i> %s</h1>
+	<p>
+		<a class="links" href="%s">%s</a>
+	</p>
+</div>
+'''
+
 # http://www.endlesslycurious.com/2011/05/11/extracting-image-exif-data-with-python/
 def get_exif_data(image):
     ret = {}
@@ -107,38 +115,17 @@ def main():
         print 'Thumbnails directory %s not empty, overwriting content' % outpath
 
     if args.name is None:
-        print 'Empty gallery name, assigning default: %s' % DEFAULT_NAME
-        html_name = DEFAULT_NAME
+        print 'Empty gallery name, assigning default: %s' % HTML_NAME
+        html_name = HTML_NAME
     else:
         html_name = args.name
 
     if args.url is None:
-        print 'Empty gallery URL address, assigning default: %s' % DEFAULT_URL
-        html_url = DEFAULT_URL
+        print 'Empty gallery URL address, assigning default: %s' % HTML_URL
+        html_url = HTML_URL
     else:
         html_url = args.url
    
-    html_addthis_per_photo = 'false'
-    if args.sharing:
-        html_addthis_per_photo = 'true' 
-    
-    html_content = """
-<div id="content">
-	<h1><i class="icon icon-th icon-5x"></i> %s</h1>
-	<p>
-		<a class="links" href="%s">%s</a>
-	</p>
-                   """ % (html_name,
-                          html_url,
-                          html_url)
-    html_sharing = """
-                   """
-    html_footer = """
-                  """ #% html_addthis_per_photo
-
-    html_per_photo_sharing = """
-                             """
-
     html = []
     html.append(HTML_HEADER % html_name)
     html.append("<body>")
@@ -207,14 +194,10 @@ def main():
     html.append('</section>')
    
     if not args.fullscreen:
-        html.append(html_content)
-        if args.sharing:
-            html.append(html_sharing)
-        html.append('</div>')
+        html.append(HTML_CONTENT % (html_name, html_url, html_url))
     else:
         print 'Fullscreen option has precedence over sharing features and others'
 
-    html.append(html_footer)
     html.append('</body>')
     html.append('</html>')
 
