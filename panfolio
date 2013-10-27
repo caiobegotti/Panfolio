@@ -56,7 +56,7 @@ HTML_HEADER = '''
 	<link href=".panfolio/fontawesome.css" rel="stylesheet" type="text/css" /> <!-- cool icons -->
 </head>
 '''
-ITEM = '''
+HTML_ITEM = '''
 	<li>
 		<a href='#image-%d'>
 			<img src='%s' alt='thumbnail' />
@@ -190,13 +190,13 @@ def main():
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
 
-            item = ITEM % (currentimage,
-                           thumbnail,
-                           currentimage,
-                           filename,
-                           preview,
-                           previousimage,
-                           nextimage)
+            item = HTML_ITEM % (currentimage,
+                                thumbnail,
+                                currentimage,
+                                filename,
+                                preview,
+                                previousimage,
+                                nextimage)
             html.append(item)
             currentimage += 1
             nextimage = currentimage + 1
