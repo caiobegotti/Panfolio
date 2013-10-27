@@ -20,6 +20,7 @@ import glob
 import shutil
 
 from PIL import Image as image
+from PIL import ImageDraw as draw
 from PIL import ExifTags as exif
 
 parser = argparse.ArgumentParser()
@@ -50,9 +51,12 @@ def get_exif_data(image):
 
 def blur_factor(image):
     exifdata = get_exif_data(image)
-    fl = exifdata['FocalLength']
-    et = exifdata['ExposureTime']
-    return ( et[0] / et[1] ) / ( 1 / ( fl[0] / fl[1] ) )
+    if exifdata:
+        fl = exifdata['FocalLength']
+        et = exifdata['ExposureTime']
+        return ( et[0] / et[1] ) / ( 1 / ( fl[0] / fl[1] ) )
+    else:
+        return 0
 
 def main():
     resources = ['default.css',
@@ -156,15 +160,22 @@ def main():
                 i.save(args.dir + preview, 'PNG', quality=100)
 
                 i.thumbnail(thumbnail_size, image.ANTIALIAS)
+                if args.blurry:
+                    n = blur_factor(i)
+                    if float(n) > float(args.blurry):
+                        # two passes, two diagonal crossed lines
+                        # the ideal was always just to ease finding blurred images
+                        # in a really big gallery by making them look slightly different
+                        print 'Image %s seems blurry (factor %s)' % (filepath, n)
+                        marked = draw.Draw(i)
+                        marked.line((0, 0) + i.size, fill="#FFFFFF")
+                        marked.line((0, i.size[1], i.size[0], 0), fill="#FFFFFF")
                 i.save(args.dir + thumbnail, 'PNG', quality=100)
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
 
             item = ""
             if args.blurry:
-                n = blur_factor(i)
-                if float(n) > float(args.blurry):
-                    print 'Image %s seems blurry (factor %s)' % (filepath, n)
                     item = "\t<img class='thumbnail blurry' src='%s' />" % (thumbnail)
             else:
                 item = """
