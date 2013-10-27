@@ -67,8 +67,6 @@ def blur_factor(image):
         return 0
 
 def main():
-    thumbnail_size = 256, 256
-    preview_size = 512, 512
     args.dir = args.dir + '/'
     allimages = args.dir + '/*'
     outpath = args.dir + '.panfolio'
@@ -157,10 +155,10 @@ def main():
                 # image-orientation through css i don't know how to fix that
                 # without using javascript, and i'd rather have the gallery
                 # looking good than saving a few kilobytes of extra images
-                i.thumbnail(preview_size, image.ANTIALIAS)
+                i.thumbnail((512, 512), image.ANTIALIAS)
                 i.save(args.dir + preview, 'PNG', quality=100)
 
-                i.thumbnail(thumbnail_size, image.ANTIALIAS)
+                i.thumbnail((256, 256), image.ANTIALIAS)
                 if args.blurry:
                     n = blur_factor(i)
                     if float(n) > float(args.blurry):
