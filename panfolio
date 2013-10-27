@@ -43,6 +43,37 @@ RESOURCES = ['default.css',
              'fontawesome/fontawesome-webfont.eot',
              'fontawesome/fontawesome-webfont.ttf']
 
+HTML_HEADER = '''
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>%s</title>
+	
+	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" /> <!-- default styling theme -->
+	<link href=".panfolio/mosaic.css" rel="stylesheet" type="text/css" /> <!-- to tightly align all the pictures -->
+	<link href=".panfolio/lightbox.css" rel="stylesheet" type="text/css" /> <!-- for when a picture is selected -->
+	<link href=".panfolio/fontawesome.css" rel="stylesheet" type="text/css" /> <!-- cool icons -->
+</head>
+'''
+ITEM = '''
+	<li>
+		<a href='#image-%d'>
+			<img src='%s' alt='thumbnail' />
+		</a>
+		<div class='overlay' id='image-%d'>
+			<a href='%s'>
+				<div class='frame' style='background-image: url(%s);'></div>
+			</a>
+			<div>
+				<a href='#image-%d' class='prev'><i class="icon icon-chevron-left"></i></a>
+				<a href='#image-%d' class='next'><i class="icon icon-chevron-right"></i></a>
+				<a href='#page' class='close'></a>
+			</div>
+		</div>
+	</li>
+'''
+
 # http://www.endlesslycurious.com/2011/05/11/extracting-image-exif-data-with-python/
 def get_exif_data(image):
     ret = {}
@@ -91,18 +122,6 @@ def main():
     if args.sharing:
         html_addthis_per_photo = 'true' 
     
-    html_header = """
-<head>
-	<meta charset="utf-8">
-	<title>%s</title>
-	
-	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" /> <!-- default styling theme -->
-	<link href=".panfolio/mosaic.css" rel="stylesheet" type="text/css" /> <!-- to tightly align all the pictures -->
-	<link href=".panfolio/lightbox.css" rel="stylesheet" type="text/css" /> <!-- for when a picture is selected -->
-	<link href=".panfolio/fontawesome.css" rel="stylesheet" type="text/css" /> <!-- cool icons -->
-</head>
-                  """ % (html_name)
-
     html_content = """
 <div id="content">
 	<h1><i class="icon icon-th icon-5x"></i> %s</h1>
@@ -121,9 +140,7 @@ def main():
                              """
 
     html = []
-    html.append("<!DOCTYPE html>")
-    html.append("<html>")
-    html.append(html_header)
+    html.append(HTML_HEADER % html_name)
     html.append("<body>")
     html.append("<section id='gallery'>")
     html.append("<ul id='thumbnails'>")
@@ -173,33 +190,13 @@ def main():
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
 
-            item = ""
-            if args.blurry:
-                    item = "\t<img class='thumbnail blurry' src='%s' />" % (thumbnail)
-            else:
-                item = """
-	<li>
-		<a href='#image-%d'>
-			<img src='%s' alt='thumbnail' />
-		</a>
-		<div class='overlay' id='image-%d'>
-			<a href='%s'>
-				<div class='frame' style='background-image: url(%s);'></div>
-			</a>
-			<div>
-				<a href='#image-%d' class='prev'><i class="icon icon-chevron-left"></i></a>
-				<a href='#image-%d' class='next'><i class="icon icon-chevron-right"></i></a>
-				<a href='#page' class='close'></a>
-			</div>
-		</div>
-	</li>
-                       """ % (currentimage,
-                              thumbnail,
-                              currentimage,
-                              filename,
-                              preview,
-                              previousimage,
-                              nextimage)
+            item = ITEM % (currentimage,
+                           thumbnail,
+                           currentimage,
+                           filename,
+                           preview,
+                           previousimage,
+                           nextimage)
             html.append(item)
             currentimage += 1
             nextimage = currentimage + 1
