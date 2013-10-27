@@ -35,6 +35,14 @@ args = parser.parse_args()
 DEFAULT_URL = 'http://localhost'
 DEFAULT_NAME = 'Demo'
 
+RESOURCES = ['default.css',
+             'mosaic.css',
+             'lightbox.css',
+             'fontawesome/fontawesome.css',
+             'fontawesome/fontawesome-webfont.woff',
+             'fontawesome/fontawesome-webfont.eot',
+             'fontawesome/fontawesome-webfont.ttf']
+
 # http://www.endlesslycurious.com/2011/05/11/extracting-image-exif-data-with-python/
 def get_exif_data(image):
     ret = {}
@@ -59,13 +67,6 @@ def blur_factor(image):
         return 0
 
 def main():
-    resources = ['default.css',
-                 'mosaic.css',
-                 'lightbox.css',
-                 'fontawesome/fontawesome.css',
-                 'fontawesome/fontawesome-webfont.woff',
-                 'fontawesome/fontawesome-webfont.eot',
-                 'fontawesome/fontawesome-webfont.ttf']
     thumbnail_size = 256, 256
     preview_size = 512, 512
     args.dir = args.dir + '/'
@@ -222,7 +223,7 @@ def main():
     html.append('</body>')
     html.append('</html>')
 
-    for item in resources:
+    for item in RESOURCES:
         shutil.copy('resources/' + item, outpath)
 
     with open (args.dir + 'index.html', 'w') as f:
