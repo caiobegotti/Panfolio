@@ -98,6 +98,8 @@ def get_exif_data(image):
         print 'IOERROR ' + image
     return ret
 
+# based on my own little python script, currently sitting at
+# https://github.com/caio1982/Scripts/blob/master/exposure_time_check.py
 def blur_factor(image):
     exifdata = get_exif_data(image)
     if exifdata:
