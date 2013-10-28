@@ -13,11 +13,12 @@ simple gallery of all your vacations photos
 """
 
 import os
-import sys
-import mimetypes
 import argparse
-import glob
-import shutil
+
+from glob import glob
+from sys import exit
+from shutil import copy
+from mimetypes import guess_type
 
 from PIL import Image as image
 from PIL import ImageDraw as draw
@@ -136,8 +137,8 @@ def main():
     previousimage = currentimage - 1
     nextimage = currentimage + 1
 
-    for filepath in glob.glob(allimages):
-        type = mimetypes.guess_type(filepath)[0]
+    for filepath in glob(allimages):
+        type = guess_type(filepath)[0]
         filename = os.path.split(filepath)[1]
         thumbnail = '.panfolio/thumbnail_%s.png' % os.path.splitext(filename)[0]
         preview = '.panfolio/preview_%s.png' % os.path.splitext(filename)[0]
@@ -202,7 +203,7 @@ def main():
     html.append('</html>')
 
     for item in RESOURCES:
-        shutil.copy('resources/' + item, outpath)
+        copy('resources/' + item, outpath)
 
     with open (args.dir + 'index.html', 'w') as f:
         f.write('\n'.join(html))
@@ -212,6 +213,6 @@ def main():
 if __name__ == '__main__':
     if not args.dir:
         parser.print_help()
-        sys.exit(2)
+        exit(2)
     main()
-    sys.exit(0)
+    exit(0)
