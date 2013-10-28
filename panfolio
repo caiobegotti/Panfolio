@@ -8,8 +8,8 @@ __email__     = 'caio1982@gmail.com'
 __author__    = 'Caio Begotti'
 
 """
-Panfolio is a tiny Python script to generate a nice
-simple gallery of all your vacations photos
+Panfolio is a tiny Python script to generate a nice and
+simple, yet beautiful, gallery of all your pictures.
 """
 
 import os
