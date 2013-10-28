@@ -8,15 +8,15 @@
 	margin: 0px;
 	padding: 0px;
 
-	-moz-column-count: 6;
+	-moz-column-count: 7;
 	-moz-column-gap: 0px;
 	-moz-column-width: auto;
 
-	-webkit-column-count: 6;
+	-webkit-column-count: 7;
 	-webkit-column-gap: 0px;
 	-webkit-column-width: auto;
 
-	column-count: 6;
+	column-count: 7;
 	column-gap: 0px;
 	column-width: auto;
 }
@@ -32,9 +32,9 @@
 @media only screen and (max-width : 1199px),
 only screen and (max-device-width : 1199px) {
 	#thumbnails {
-		-moz-column-count: 5;
-		-webkit-column-count: 5;
-		column-count: 5;
+		-moz-column-count: 6;
+		-webkit-column-count: 6;
+		column-count: 6;
 	}
 }
 
@@ -42,9 +42,9 @@ only screen and (max-device-width : 1199px) {
 @media only screen and (max-width : 999px),
 only screen and (max-device-width : 999px) {
 	#thumbnails {
-		-moz-column-count: 4;
-		-webkit-column-count: 4;
-		column-count: 4;
+		-moz-column-count: 5;
+		-webkit-column-count: 5;
+		column-count: 5;
 	}
 }
 
