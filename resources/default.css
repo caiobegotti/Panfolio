@@ -35,6 +35,7 @@ body {
 }
 
 h1 {
+	cursor: default;
 	font-size: 300%;
 	margin: 0%;
 }
@@ -71,6 +72,13 @@ p {
 	padding: 0% 0% 5% 5%;
 }
 
+h1 > .icon-th {
+	float: left;
+	padding: 10px;
+	padding-bottom: 50px;
+}
+
 #content p {
 	width: 75%;
+	padding: 0%;
 }
