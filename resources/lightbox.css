@@ -72,7 +72,6 @@ only screen and (max-device-width : 320px) {
 }
 
 .frame {
-	display: none;
 	padding: 0px;
 	margin: 0px;
 	width: 100%;
@@ -94,10 +93,14 @@ only screen and (max-device-width : 320px) {
 	padding: 2.5% 0% 10% 0%;
 }
 
-.overlay:target > a > .frame {
-	display: block;
+.overlay > a {
+	display: none;
+}
+
+.overlay:target > a {
+	display: inline;
 }
 
 x:-o-prefocus, .overlay img {
-    height: 100%;
+	height: 100%;
 }
