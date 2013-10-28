@@ -7,10 +7,10 @@ __license__   = 'All original files are public domain'
 __email__     = 'caio1982@gmail.com'
 __author__    = 'Caio Begotti'
 
-"""
+'''
 Panfolio is a tiny Python script to generate a nice and
 simple, yet beautiful, gallery of all your pictures.
-"""
+'''
 
 import os
 import argparse
@@ -48,13 +48,13 @@ HTML_HEADER = '''
 
 <html>
 <head>
-	<meta charset="utf-8">
+	<meta charset='utf-8'>
 	<title>%s</title>
 	
-	<link href=".panfolio/default.css" rel="stylesheet" type="text/css" /> <!-- default styling theme -->
-	<link href=".panfolio/mosaic.css" rel="stylesheet" type="text/css" /> <!-- to tightly align all the pictures -->
-	<link href=".panfolio/lightbox.css" rel="stylesheet" type="text/css" /> <!-- for when a picture is selected -->
-	<link href=".panfolio/fontawesome.css" rel="stylesheet" type="text/css" /> <!-- cool icons -->
+	<link href='.panfolio/default.css' rel='stylesheet' type='text/css' /> <!-- default styling theme -->
+	<link href='.panfolio/mosaic.css' rel='stylesheet' type='text/css' /> <!-- to tightly align all the pictures -->
+	<link href='.panfolio/lightbox.css' rel='stylesheet' type='text/css' /> <!-- for when a picture is selected -->
+	<link href='.panfolio/fontawesome.css' rel='stylesheet' type='text/css' /> <!-- cool icons -->
 </head>
 '''
 HTML_ITEM = '''
@@ -67,8 +67,8 @@ HTML_ITEM = '''
 				<div class='frame' style='background-image: url(%s);'></div>
 			</a>
 			<div>
-				<a href='#image-%d' class='prev'><i class="icon icon-chevron-left"></i></a>
-				<a href='#image-%d' class='next'><i class="icon icon-chevron-right"></i></a>
+				<a href='#image-%d' class='prev'><i class='icon icon-chevron-left'></i></a>
+				<a href='#image-%d' class='next'><i class='icon icon-chevron-right'></i></a>
 				<a href='#page' class='close'></a>
 			</div>
 		</div>
@@ -76,10 +76,10 @@ HTML_ITEM = '''
 '''
 
 HTML_CONTENT = ''' 
-<div id="content">
-	<h1><i class="icon icon-th icon-5x"></i> %s</h1>
+<div id='content'>
+	<h1><i class='icon icon-th icon-5x'></i>%s</h1>
 	<p>
-		<a class="links" href="%s">%s</a>
+		<a class='links' href='%s'>%s</a>
 	</p>
 </div>
 '''
@@ -130,9 +130,9 @@ def main():
    
     html = []
     html.append(HTML_HEADER % html_name)
-    html.append("<body>")
-    html.append("<section id='gallery'>")
-    html.append("<ul id='thumbnails'>")
+    html.append('<body>')
+    html.append('<section id=\'gallery\'>')
+    html.append('<ul id=\'thumbnails\'>')
 
     currentimage = 1
     previousimage = currentimage - 1
@@ -173,8 +173,8 @@ def main():
                         # in a really big gallery by making them look slightly different
                         print 'Image %s seems blurry (factor %s)' % (filepath, n)
                         marked = draw.Draw(i)
-                        marked.line((0, 0) + i.size, fill="#FFFFFF")
-                        marked.line((0, i.size[1], i.size[0], 0), fill="#FFFFFF")
+                        marked.line((0, 0) + i.size, fill='#FFFFFF')
+                        marked.line((0, i.size[1], i.size[0], 0), fill='#FFFFFF')
                 i.save(args.dir + thumbnail, 'PNG', quality=100)
             except IOError:
                 print 'Thumbnailing failed for %s' % filepath
@@ -191,7 +191,7 @@ def main():
             nextimage = currentimage + 1
             previousimage = currentimage - 1
         else:
-            print "Skipping non-image file %s" % filepath
+            print 'Skipping non-image file %s' % filepath
     html.append('</ul>')
     html.append('</section>')
    
