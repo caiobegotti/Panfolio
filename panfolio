@@ -44,7 +44,8 @@ RESOURCES = ['default.css',
              'fontawesome/fontawesome-webfont.ttf']
 
 HTML_HEADER = '''
-<!DOCTYPE html>
+<!doctype html>
+
 <html>
 <head>
 	<meta charset="utf-8">
