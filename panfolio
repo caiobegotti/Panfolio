@@ -68,8 +68,8 @@ HTML_ITEM = '''
 			</a>
 			<div id='navigation'>
 				<a href='#image-%d' class='prev'><i class='icon icon-chevron-left'></i></a>
+				<a href='#page' class='close'><i class='icon icon-th'></i></a>
 				<a href='#image-%d' class='next'><i class='icon icon-chevron-right'></i></a>
-				<a href='#page' class='close'></a>
 			</div>
 		</div>
 	</li>

@@ -13,7 +13,7 @@
 	margin-right: auto;
 }
 
-.prev, .next {
+.prev, .close, .next {
 	float: left;
 }
 
@@ -23,14 +23,14 @@
 }
 
 @media (min-width: 1024px) {
-	a.prev, a.next {
+	.prev, .close, .next {
 		font-size: 555%;
 	}
 }
 
 @media only screen and (max-width : 1023px),
 only screen and (max-device-width : 320px) {
-	a.prev, a.next {
+	.prev, .close, .next {
 		font-size: 444%;
 	}
 }
@@ -39,8 +39,8 @@ only screen and (max-device-width : 320px) {
 	#navigation {
 		width: 100%;
 	}
-	.prev, .next {
-		width: 50%;
+	.prev, .close, .next {
+		width: 33%;
 		float: left;
 	}
 }
@@ -49,21 +49,24 @@ only screen and (max-device-width : 320px) {
 	#navigation {
 		width: 100%;
 	}
-	.prev, .next {
+	.prev, .close, .next {
 		width: 100%;
 	}
 }
 
-a.prev:visited,
-a.next:visited,
-a.prev,
-a.next {
+.prev:visited,
+.close:visited,
+.next:visited,
+.prev,
+.close,
+.next {
 	text-shadow: 0px 2px 1px #222;
 	color: #4d4d4d;
 }
 
-a.prev:hover,
-a.next:hover {
+.prev:hover,
+.close:hover,
+.next:hover {
 	text-shadow: 0px 1px 1px #4d4d4d;
 	color: #222;
 }
@@ -95,23 +98,6 @@ a.next:hover {
 	display: block;
 }
 
-.close {
-	top: 0px;
-	left: 0px;
-	position: absolute;
-	min-width: 9999px;
-	min-height: 9999px;
-	z-index: -1;
-}
-
 x:-o-prefocus, .overlay img {
     height: 100%;
 }
-
-/* debugging
-.overlay {border: 1px solid red;}
-.overlay img {border: 1px solid blue;}
-.overlay > div {border: 1px solid green;}
-.overlay > div > * {border: 1px solid purple;}
-a.close, a.prev, a.next {border: 1px solid yellow;}
-*/
