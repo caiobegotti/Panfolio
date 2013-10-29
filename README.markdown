@@ -31,7 +31,7 @@ Pros
 
 - as simple as it could get
 - renders fine in tablets and smarthphones
-- no javascript code, it runs pretty fast
+- no javascript, no images, loads pretty fast
 - your pictures matter, no cluttering
 - automagically rotates thumbnails
 - elegant! css-only mosaic style gallery
