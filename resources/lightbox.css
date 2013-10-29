@@ -17,14 +17,24 @@
 	float: left;
 }
 
+.prev {
+	text-align: right;
+}
+
+.next {
+	text-align: left;
+}
+
 #navigation {
+	padding: 10px;
+	background-color: #111111;
 	position: absolute;
 	bottom: 0;
 }
 
 @media (min-width: 1024px) {
 	.prev, .close, .next {
-		font-size: 555%;
+		font-size: 333%;
 	}
 }
 
