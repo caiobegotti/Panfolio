@@ -58,6 +58,7 @@ HTML_HEADER = '''
 	<link href='.panfolio/fontawesome.css' rel='stylesheet' type='text/css' /> <!-- cool icons -->
 </head>
 '''
+
 HTML_ITEM = '''
 	<li>
 		<a href='#image-%d'>
