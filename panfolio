@@ -15,9 +15,10 @@ simple, yet beautiful, gallery of all your pictures.
 import os
 import argparse
 
-from glob import glob
 from sys import exit
+from glob import glob
 from shutil import copy
+from urllib import quote
 from mimetypes import guess_type
 
 from PIL import Image as image
@@ -30,6 +31,7 @@ parser.add_argument('-n', '--name', help='the name of your gallery')
 parser.add_argument('-u', '--url', help='url to be appended to your gallery')
 parser.add_argument('-b', '--blurry', help='mark images whose blurry factor is above N', metavar='N')
 parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
+parser.add_argument('-s', '--share', help='url to share on social networks via gallery buttons', metavar='URL')
 args = parser.parse_args()
 
 HTML_URL = 'http://localhost'
@@ -73,6 +75,15 @@ HTML_ITEM = '''
 			</div>
 		</div>
 	</li>
+'''
+
+HTML_SHARING = '''
+<div id='sharing'>
+	<!-- e-mail --> %s
+	<!-- facebook --> %s
+	<!-- twitter --> %s
+	<!-- google plus --> %s
+</div>
 '''
 
 HTML_CONTENT = ''' 
@@ -196,8 +207,23 @@ def main():
             print 'Skipping non-image file %s' % filepath
     html.append('</ul>')
     html.append('</section>')
-   
+  
     if not args.fullscreen:
+        if args.share:
+            sharing_data = {
+                            'arrow': quote(' → '),
+                            'title': quote(html_name),
+                            'url': quote(args.share)
+                        }
+	    mailto = "<a target='_blank' href='mailto:info@example.com?subject={title}{arrow}{url}'><i class='icon icon-envelope-alt'></i></a>"
+            twitter = "<a target='_blank' href='http://twitter.com/home?status={title}{arrow}{url}'><i class='icon icon-twitter-sign'></i></a>"
+            facebook = "<a target='_blank' href='http://www.facebook.com/sharer/sharer.php?s=100&p[title]={title}&p[url]={url}'><i class='icon icon-facebook-sign'></i></a>"
+            googleplus = "<a target='_blank' href='https://plus.google.com/share?url={url}'><i class='icon icon-google-plus-sign'></i></a>"
+            mailto = mailto.format(**sharing_data)
+            twitter = twitter.format(**sharing_data)
+            facebook = facebook.format(**sharing_data)
+            googleplus = googleplus.format(**sharing_data)
+            html.append(HTML_SHARING % (mailto, twitter, facebook, googleplus))
         html.append(HTML_CONTENT % (html_name, html_url, html_url))
     else:
         print 'Fullscreen option has precedence over sharing features and others'
