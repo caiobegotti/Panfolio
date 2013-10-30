@@ -81,36 +81,3 @@ h1 > .icon-th {
 	width: 75%;
 	padding: 0%;
 }
-
-#sharing {
-	font-size: 200%;
-	padding-left: 6%;
-}
-
-.icon-twitter-sign,
-.icon-facebook-sign,
-.icon-pinterest-sign,
-.icon-google-plus-sign,
-.icon-envelope-alt {
-	text-shadow: 0px 2px 1px #000000;
-}
-
-.icon-twitter-sign {
-	color: #03AFEF;
-}
-
-.icon-facebook-sign {
-	color: #3B5998;
-}
-
-.icon-pinterest-sign {
-	color: #C8232C;
-}
-
-.icon-google-plus-sign {
-	color: #DD4B39;
-}
-
-.icon-envelope-alt {
-	color: #CCCCCC;
-}
