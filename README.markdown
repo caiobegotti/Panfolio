@@ -34,7 +34,6 @@ Pros
 - automagically rotates thumbnails
 - elegant! css-only mosaic style gallery
 - a minimalist css-only lightbox
-- optional social network sharing
 
 Cons
 ====
