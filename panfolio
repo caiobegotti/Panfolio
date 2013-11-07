@@ -106,8 +106,9 @@ def blur_factor(image):
         return 0
 
 def main():
-    args.dir = args.dir + '/'
-    allimages = glob(args.dir + '/*')
+    if not args.dir.endswith('/'):
+        args.dir = args.dir + '/'
+
     outpath = args.dir + '.panfolio'
     if not os.path.exists(outpath):
         os.makedirs(outpath)
@@ -135,6 +136,10 @@ def main():
     currentimage = 1
     previousimage = currentimage - 1
     nextimage = currentimage + 1
+
+    # might also potentially includes
+    # sub-dirs, which we'll handle later
+    allimages = glob(args.dir + '*')
 
     for filepath in allimages:
         type = guess_type(filepath)[0]
