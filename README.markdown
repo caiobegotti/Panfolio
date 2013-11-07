@@ -34,6 +34,7 @@ Pros
 - automagically rotates thumbnails
 - elegant! css-only mosaic style gallery
 - a minimalist css-only lightbox
+- sub-directories support
 
 Cons
 ====
@@ -44,6 +45,6 @@ Pending
 -------
 
 - merge all css and html into a single file?
+- some kind of social networking thing?
 - thumbnails caching, maybe?
-- support sub-directories?
 - infinite scroll? or not?
