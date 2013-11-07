@@ -86,7 +86,7 @@ def get_exif_data(image):
     try:
         if hasattr(image, '_getexif' ):
             exifinfo = image._getexif()
-            if exifinfo != None:
+            if exifinfo is not None:
                 for tag, value in exifinfo.items():
                     decoded = exif.TAGS.get(tag, tag)
                     ret[decoded] = value
