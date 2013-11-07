@@ -105,11 +105,14 @@ def blur_factor(image):
     else:
         return 0
 
-def main():
-    if not args.dir.endswith('/'):
-        args.dir = args.dir + '/'
+def all_dirs_under(path):
+    return [dir for dir in glob(path + '*') if os.path.isdir(dir)]
 
-    outpath = args.dir + '.panfolio'
+def gallery_generator(path):
+    if not path.endswith('/'):
+        path = path + '/'
+
+    outpath = path + '.panfolio'
     if not os.path.exists(outpath):
         os.makedirs(outpath)
     else:
@@ -139,12 +142,12 @@ def main():
 
     # might also potentially includes
     # sub-dirs, which we'll handle later
-    allimages = glob(args.dir + '*')
+    allimages = glob(path + '*')
 
     for filepath in allimages:
         type = guess_type(filepath)[0]
-        if type and 'image' not in type:
-            print 'Skipping non-image file %s' % filepath
+        if type is None or 'image' not in type:
+            print 'Skipping non-image item %s' % filepath
             allimages.remove(filepath)
 
     for filepath in allimages:
@@ -169,7 +172,7 @@ def main():
             # without using javascript, and i'd rather have the gallery
             # looking good than saving a few kilobytes of extra images
             i.thumbnail((512, 512), image.ANTIALIAS)
-            i.save(args.dir + preview, 'PNG', quality=100)
+            i.save(path + preview, 'PNG', quality=100)
 
             i.thumbnail((256, 256), image.ANTIALIAS)
             if args.blurry:
@@ -182,7 +185,7 @@ def main():
                     marked = draw.Draw(i)
                     marked.line((0, 0) + i.size, fill='#FFFFFF')
                     marked.line((0, i.size[1], i.size[0], 0), fill='#FFFFFF')
-            i.save(args.dir + thumbnail, 'PNG', quality=100)
+            i.save(path + thumbnail, 'PNG', quality=100)
         except IOError:
             print 'Thumbnailing failed for %s' % filepath
 
@@ -212,14 +215,14 @@ def main():
     for item in RESOURCES:
         copy('resources/' + item, outpath)
 
-    with open (args.dir + 'index.html', 'w') as f:
+    with open (path + 'index.html', 'w') as f:
         f.write('\n'.join(html))
 
-    print '\nAll done! You can now copy your directory %s and gallery files to anywhere you want.\t' % args.dir
+    print '\nAll done! You can now copy your directory %s and gallery files to anywhere you want.\t' % path
 
 if __name__ == '__main__':
     if not args.dir:
         parser.print_help()
         exit(2)
-    main()
+    gallery_generator(args.dir)
     exit(0)
