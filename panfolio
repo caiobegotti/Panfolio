@@ -25,19 +25,6 @@ from PIL import Image as image
 from PIL import ImageDraw as draw
 from PIL import ExifTags as exif
 
-parser = argparse.ArgumentParser()
-
-# REMEMBER:
-# only the extremely necessary options
-# no cluttering, no bloating
-parser.add_argument('-d', '--dir', help='your photos directory')
-parser.add_argument('-n', '--name', help='the name of your gallery')
-parser.add_argument('-u', '--url', help='url to be appended to your gallery')
-parser.add_argument('-b', '--blurry', help='mark images whose blurry factor is above N', metavar='N')
-parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
-
-args = parser.parse_args()
-
 HTML_URL = 'http://127.0.0.1'
 HTML_NAME = 'Panfolio demo'
 
@@ -224,6 +211,19 @@ def gallery_generator(path):
         f.write('\n'.join(html))
 
     print '\nAll done! You can now copy your directory %s and gallery files to anywhere you want.\t' % path
+
+parser = argparse.ArgumentParser()
+
+# REMEMBER:
+# only the extremely necessary options
+# no cluttering, no bloating
+parser.add_argument('-d', '--dir', help='your photos directory')
+parser.add_argument('-n', '--name', help='the name of your gallery')
+parser.add_argument('-u', '--url', help='url to be appended to your gallery')
+parser.add_argument('-b', '--blurry', help='mark images whose blurry factor is above N', metavar='N')
+parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
+
+args = parser.parse_args()
 
 if __name__ == '__main__':
     if not args.dir:
