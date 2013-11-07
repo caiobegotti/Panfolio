@@ -101,9 +101,6 @@ def all_dirs_under(path):
     return [dir for dir in glob(path + '*') if os.path.isdir(dir)]
 
 def gallery_generator(path):
-    if not path.endswith('/'):
-        path = path + '/'
-
     outpath = path + '.panfolio'
     if not os.path.exists(outpath):
         os.makedirs(outpath)
@@ -210,7 +207,7 @@ def gallery_generator(path):
     with open (path + 'index.html', 'w') as f:
         f.write('\n'.join(html))
 
-    print '\nAll done! You can now copy your directory %s and gallery files to anywhere you want.\t' % path
+    print '\nAll done! You can now copy your directory %s and gallery files as you wish\n' % path
 
 parser = argparse.ArgumentParser()
 
@@ -229,5 +226,14 @@ if __name__ == '__main__':
     if not args.dir:
         parser.print_help()
         exit(2)
-    gallery_generator(args.dir)
+
+    subdirs = all_dirs_under(args.dir + '/')
+
+    if len(subdirs) > 1:
+        for subdir in subdirs:
+            print 'Generating gallery found inside sub-dir %s' % subdir
+            gallery_generator(subdir + '/')
+
+    gallery_generator(args.dir + '/')
+
     exit(0)
