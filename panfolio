@@ -107,7 +107,7 @@ def blur_factor(image):
 
 def main():
     args.dir = args.dir + '/'
-    allimages = args.dir + '/*'
+    allimages = glob(args.dir + '/*')
     outpath = args.dir + '.panfolio'
     if not os.path.exists(outpath):
         os.makedirs(outpath)
@@ -136,60 +136,63 @@ def main():
     previousimage = currentimage - 1
     nextimage = currentimage + 1
 
-    for filepath in glob(allimages):
+    for filepath in allimages:
         type = guess_type(filepath)[0]
+        if type and 'image' not in type:
+            print 'Skipping non-image file %s' % filepath
+            allimages.remove(filepath)
+
+    for filepath in allimages:
         filename = os.path.split(filepath)[1]
         thumbnail = '.panfolio/thumbnail_%s.png' % os.path.splitext(filename)[0]
         preview = '.panfolio/preview_%s.png' % os.path.splitext(filename)[0]
-        if type and 'image' in type:
+        try:
+            i = image.open(filepath)
             try:
-                i = image.open(filepath)
-                try:
-                    exifdata = get_exif_data(i)
-                    if exifdata['Orientation'] == 3:
-                        i = i.transpose(image.ROTATE_180)
-                    elif exifdata['Orientation'] == 6:
-                        i = i.transpose(image.ROTATE_270)
-                    elif exifdata['Orientation'] == 8:
-                        i = i.transpose(image.ROTATE_90)
-                except KeyError:
-                    print 'No EXIF orientation found in %s' % filepath
+                exifdata = get_exif_data(i)
+                if exifdata['Orientation'] == 3:
+                    i = i.transpose(image.ROTATE_180)
+                elif exifdata['Orientation'] == 6:
+                    i = i.transpose(image.ROTATE_270)
+                elif exifdata['Orientation'] == 8:
+                    i = i.transpose(image.ROTATE_90)
+            except KeyError:
+                print 'No EXIF orientation found in %s' % filepath
 
-                # this is not pretty but as long no major browsers support
-                # image-orientation through css i don't know how to fix that
-                # without using javascript, and i'd rather have the gallery
-                # looking good than saving a few kilobytes of extra images
-                i.thumbnail((512, 512), image.ANTIALIAS)
-                i.save(args.dir + preview, 'PNG', quality=100)
+            # this is not pretty but as long no major browsers support
+            # image-orientation through css i don't know how to fix that
+            # without using javascript, and i'd rather have the gallery
+            # looking good than saving a few kilobytes of extra images
+            i.thumbnail((512, 512), image.ANTIALIAS)
+            i.save(args.dir + preview, 'PNG', quality=100)
 
-                i.thumbnail((256, 256), image.ANTIALIAS)
-                if args.blurry:
-                    n = blur_factor(i)
-                    if float(n) > float(args.blurry):
-                        # two passes, two diagonal crossed lines
-                        # the ideal was always just to ease finding blurred images
-                        # in a really big gallery by making them look slightly different
-                        print 'Image %s seems blurry (factor %s)' % (filepath, n)
-                        marked = draw.Draw(i)
-                        marked.line((0, 0) + i.size, fill='#FFFFFF')
-                        marked.line((0, i.size[1], i.size[0], 0), fill='#FFFFFF')
-                i.save(args.dir + thumbnail, 'PNG', quality=100)
-            except IOError:
-                print 'Thumbnailing failed for %s' % filepath
+            i.thumbnail((256, 256), image.ANTIALIAS)
+            if args.blurry:
+                n = blur_factor(i)
+                if float(n) > float(args.blurry):
+                    # two passes, two diagonal crossed lines
+                    # the ideal was always just to ease finding blurred images
+                    # in a really big gallery by making them look slightly different
+                    print 'Image %s seems blurry (factor %s)' % (filepath, n)
+                    marked = draw.Draw(i)
+                    marked.line((0, 0) + i.size, fill='#FFFFFF')
+                    marked.line((0, i.size[1], i.size[0], 0), fill='#FFFFFF')
+            i.save(args.dir + thumbnail, 'PNG', quality=100)
+        except IOError:
+            print 'Thumbnailing failed for %s' % filepath
 
-            item = HTML_ITEM % (currentimage,
-                                thumbnail,
-                                currentimage,
-                                filename,
-                                preview,
-                                previousimage,
-                                nextimage)
-            html.append(item)
-            currentimage += 1
-            nextimage = currentimage + 1
-            previousimage = currentimage - 1
-        else:
-            print 'Skipping non-image file %s' % filepath
+        item = HTML_ITEM % (currentimage,
+                            thumbnail,
+                            currentimage,
+                            filename,
+                            preview,
+                            previousimage,
+                            nextimage)
+        html.append(item)
+        currentimage += 1
+        nextimage = currentimage + 1
+        previousimage = currentimage - 1
+
     html.append('</ul>')
     html.append('</section>')
   
