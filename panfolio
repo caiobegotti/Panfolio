@@ -101,20 +101,22 @@ def all_dirs_under(path):
     return [dir for dir in glob(path + '*') if os.path.isdir(dir)]
 
 def gallery_generator(path):
+    print 'Generating gallery inside [%s]' % path
+
     outpath = path + '.panfolio'
     if not os.path.exists(outpath):
         os.makedirs(outpath)
     else:
-        print 'Thumbnails directory %s not empty, overwriting content' % outpath
+        print 'Thumbnails directory [%s] not empty, overwriting content' % outpath
 
     if args.name is None:
-        print 'Empty gallery name, assigning default: %s' % HTML_NAME
+        print 'Empty gallery name, assigning default [%s]' % HTML_NAME
         html_name = HTML_NAME
     else:
         html_name = args.name
 
     if args.url is None:
-        print 'Empty gallery URL address, assigning default: %s' % HTML_URL
+        print 'Empty gallery URL address, assigning default [%s]' % HTML_URL
         html_url = HTML_URL
     else:
         html_url = args.url
@@ -136,7 +138,7 @@ def gallery_generator(path):
     for filepath in allimages:
         type = guess_type(filepath)[0]
         if type is None or 'image' not in type:
-            print 'Skipping non-image item %s' % filepath
+            print 'Skipping non-image item [%s]' % filepath
             allimages.remove(filepath)
 
     for filepath in allimages:
@@ -154,7 +156,7 @@ def gallery_generator(path):
                 elif exifdata['Orientation'] == 8:
                     i = i.transpose(image.ROTATE_90)
             except KeyError:
-                print 'No EXIF orientation found in %s' % filepath
+                print 'No EXIF orientation found in [%s]' % filepath
 
             # this is not pretty but as long no major browsers support
             # image-orientation through css i don't know how to fix that
@@ -170,13 +172,13 @@ def gallery_generator(path):
                     # two passes, two diagonal crossed lines
                     # the ideal was always just to ease finding blurred images
                     # in a really big gallery by making them look slightly different
-                    print 'Image %s seems blurry (factor %s)' % (filepath, n)
+                    print 'Image [%s] seems blurry, factor [%s]' % (filepath, n)
                     marked = draw.Draw(i)
                     marked.line((0, 0) + i.size, fill='#FFFFFF')
                     marked.line((0, i.size[1], i.size[0], 0), fill='#FFFFFF')
             i.save(path + thumbnail, 'PNG', quality=100)
         except IOError:
-            print 'Thumbnailing failed for %s' % filepath
+            print 'Thumbnailing failed for [%s]' % filepath
 
         item = HTML_ITEM % (currentimage,
                             thumbnail,
@@ -192,11 +194,11 @@ def gallery_generator(path):
 
     html.append('</ul>')
     html.append('</section>')
-  
+
     if not args.fullscreen:
         html.append(HTML_CONTENT % (html_name, html_url, html_url))
     else:
-        print 'Fullscreen option has precedence over other options'
+        print 'Fullscreen option has precedence over other gallery options'
 
     html.append('</body>')
     html.append('</html>')
@@ -207,7 +209,8 @@ def gallery_generator(path):
     with open (path + 'index.html', 'w') as f:
         f.write('\n'.join(html))
 
-    print '\nAll done! You can now copy your directory %s and gallery files as you wish\n' % path
+    # just a log separator
+    print ''
 
 parser = argparse.ArgumentParser()
 
@@ -227,13 +230,14 @@ if __name__ == '__main__':
         parser.print_help()
         exit(2)
 
-    subdirs = all_dirs_under(args.dir + '/')
+    args.subdirs = all_dirs_under(args.dir + '/')
 
-    if len(subdirs) > 1:
-        for subdir in subdirs:
-            print 'Generating gallery found inside sub-dir %s' % subdir
+    if len(args.subdirs) > 1:
+        print 'Found [%d] sub-galleries under [%s], processing all\n' % (len(args.subdirs), args.dir)
+        for subdir in args.subdirs:
             gallery_generator(subdir + '/')
 
     gallery_generator(args.dir + '/')
 
+    print 'All done! You can now copy [%s] and its gallery files as you wish' % args.dir
     exit(0)
