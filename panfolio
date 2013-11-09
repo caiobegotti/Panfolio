@@ -97,7 +97,9 @@ def blur_factor(image):
     else:
         return 0
 
-def all_dirs_under(path):
+def dirs_under(path):
+    # until the glob module supports '**' (under discussion on issue #13968)
+    # i won't bother much with REAL subdirs, just the ones one level beneath parent
     return [dir for dir in glob(path + '*') if os.path.isdir(dir)]
 
 def gallery_generator(path):
@@ -230,7 +232,7 @@ if __name__ == '__main__':
         parser.print_help()
         exit(2)
 
-    args.subdirs = all_dirs_under(args.dir + '/')
+    args.subdirs = dirs_under(args.dir + '/')
 
     if len(args.subdirs) > 1:
         print 'Found [%d] sub-galleries under [%s], processing all\n' % (len(args.subdirs), args.dir)
