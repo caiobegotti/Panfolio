@@ -31,6 +31,7 @@ Pros
 - renders fine in tablets and smarthphones
 - no javascript, no images, loads pretty fast
 - your pictures matter, no cluttering
+- faster/smaller than igal and others generators
 - automagically rotates thumbnails
 - elegant! css-only mosaic style gallery
 - a minimalist css-only lightbox
@@ -39,7 +40,8 @@ Pros
 Cons
 ====
 
-- you tell me!
+- no keyboard navigation
+- ...other cons? you tell me!
 
 Pending
 -------
