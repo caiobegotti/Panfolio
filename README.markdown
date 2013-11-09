@@ -47,5 +47,3 @@ Pending
 
 - merge all css and html into a single file?
 - some kind of social networking thing?
-- thumbnails caching, maybe?
-- infinite scroll? or not?
