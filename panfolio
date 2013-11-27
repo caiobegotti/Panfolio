@@ -59,7 +59,7 @@ HTML_ITEM = '''
 			<a href='%s'><div class='frame' style='background-image: url(%s);'></div></a>
 			<div id='navigation'>
 				<a href='#image-%d' class='prev'><i class='icon icon-chevron-left'></i></a>
-				<a href='#page' class='close'><i class='icon icon-th'></i></a>
+				<a href='#' class='close'><i class='icon icon-th'></i></a>
 				<a href='#image-%d' class='next'><i class='icon icon-chevron-right'></i></a>
 			</div>
 		</div>
@@ -84,8 +84,23 @@ def get_exif_data(image):
                     decoded = exif.TAGS.get(tag, tag)
                     ret[decoded] = value
     except IOError:
-        print 'IOERROR ' + image
+        print 'IOERROR', image
     return ret
+
+def get_image_orientation(image):
+    exif = get_exif_data(image)
+    try:
+        print exif['Comment']
+        return exif['Orientation']
+    except KeyError:
+        return None
+
+def get_image_caption(filename):
+    try:
+        captions = dict([line.split(':', 1) for line in open('test.captions')])
+        return captions[filename].strip()
+    except:
+        return filename
 
 # based on my own little python script, currently sitting at
 # https://github.com/caio1982/Scripts/blob/master/exposure_time_check.py
@@ -151,15 +166,18 @@ def gallery_generator(path):
         try:
             i = image.open(filepath)
             try:
-                exifdata = get_exif_data(i)
-                if exifdata['Orientation'] == 3:
+                orientation = get_image_orientation(i)
+                if orientation == 3:
                     i = i.transpose(image.ROTATE_180)
-                elif exifdata['Orientation'] == 6:
+                elif orientation == 6:
                     i = i.transpose(image.ROTATE_270)
-                elif exifdata['Orientation'] == 8:
+                elif orientation == 8:
                     i = i.transpose(image.ROTATE_90)
             except KeyError:
                 print 'No EXIF orientation found in [%s]' % filepath
+
+            if args.captions:
+                caption = get_image_caption(filename)
 
             # this is not pretty but as long no major browsers support
             # image-orientation through css i don't know how to fix that
@@ -184,14 +202,14 @@ def gallery_generator(path):
             print 'Thumbnailing failed for [%s]' % filepath
 
         if args.captions:
-            caption = '<div class=\'captioned\'><em>%s</em></div>' % filename
+            filecaption = '<div class=\'captioned\'><em>%s</em></div>' % caption
         else:
-            caption = ''
+            filecaption = ''
 
         item = HTML_ITEM % (currentimage,
                             thumbnail,
                             currentimage,
-                            caption,
+                            filecaption,
                             filename,
                             preview,
                             previousimage,
