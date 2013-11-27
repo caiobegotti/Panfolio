@@ -33,6 +33,7 @@ Pros
 - your pictures matter, no cluttering
 - automagically rotates thumbnails
 - elegant! css-only mosaic style gallery
+- captions (via exif or manually added)
 - a minimalist css-only lightbox
 - sub-directories support
 
