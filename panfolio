@@ -90,17 +90,13 @@ def get_exif_data(image):
 def get_image_orientation(image):
     exif = get_exif_data(image)
     try:
-        print exif['Comment']
         return exif['Orientation']
     except KeyError:
         return None
 
 def get_image_caption(filename):
-    try:
-        captions = dict([line.split(':', 1) for line in open(args.captions)])
-        return captions[filename].strip()
-    except:
-        return filename
+    captions = dict([line.split(':', 1) for line in open(args.captions)])
+    return captions[filename].strip()
 
 # based on my own little python script, currently sitting at
 # https://github.com/caio1982/Scripts/blob/master/exposure_time_check.py
@@ -176,9 +172,6 @@ def gallery_generator(path):
             except KeyError:
                 print 'No EXIF orientation found in [%s]' % filepath
 
-            if args.captions:
-                caption = get_image_caption(filename)
-
             # this is not pretty but as long no major browsers support
             # image-orientation through css i don't know how to fix that
             # without using javascript, and i'd rather have the gallery
@@ -202,9 +195,10 @@ def gallery_generator(path):
             print 'Thumbnailing failed for [%s]' % filepath
 
         if args.captions:
-            filecaption = '<div class=\'captioned\'><em>%s</em></div>' % caption
-        else:
-            filecaption = ''
+            try:
+                filecaption = '<div class=\'captioned\'><em>%s</em></div>' % get_image_caption(filename)
+            except:
+                filecaption = ''
 
         item = HTML_ITEM % (currentimage,
                             thumbnail,
