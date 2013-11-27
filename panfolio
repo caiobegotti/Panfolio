@@ -55,6 +55,7 @@ HTML_ITEM = '''
 	<li>
 		<a href='#image-%d'><img src='%s' alt='thumbnail' /></a>
 		<div class='overlay' id='image-%d'>
+			%s <!-- optional caption block -->
 			<a href='%s'><div class='frame' style='background-image: url(%s);'></div></a>
 			<div id='navigation'>
 				<a href='#image-%d' class='prev'><i class='icon icon-chevron-left'></i></a>
@@ -182,9 +183,15 @@ def gallery_generator(path):
         except IOError:
             print 'Thumbnailing failed for [%s]' % filepath
 
+        if args.captions:
+            caption = '<div class=\'captioned\'><em>%s</em></div>' % filename
+        else:
+            caption = ''
+
         item = HTML_ITEM % (currentimage,
                             thumbnail,
                             currentimage,
+                            caption,
                             filename,
                             preview,
                             previousimage,
@@ -224,6 +231,7 @@ parser.add_argument('-n', '--name', help='the name of your gallery')
 parser.add_argument('-u', '--url', help='url to be appended to your gallery')
 parser.add_argument('-b', '--blurry', help='mark images whose blurry factor is above N', metavar='N')
 parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
+parser.add_argument('-c', '--captions', help='inserts captions tags in the gallery for later edition', action='store_true')
 
 args = parser.parse_args()
 

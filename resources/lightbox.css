@@ -31,6 +31,9 @@
 	padding: 10px;
 	background-color: #111111;
 	position: absolute;
+}
+
+#navigation {
 	bottom: 0;
 }
 
@@ -102,4 +105,16 @@ screen and (max-device-width : 320px) {
 
 x:-o-prefocus, .overlay img {
 	height: 100%;
+}
+
+.captioned {
+	position: absolute;
+	width: 100%;
+}
+
+.captioned > em {
+	padding: 0px 5px 5px 5px;
+	background-color: rgba(0, 0, 0, 0.5);
+	font-style: normal;
+	color: #FFFFFF;
 }
