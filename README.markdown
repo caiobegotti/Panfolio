@@ -11,9 +11,15 @@ Wanna see how Panfolio looks like? Check it out: http://caio.ueberalles.net/panf
 Usage
 =====
 
+The following command was used to generated the demo gallery. Specifies a caption file for some of the photos, tells Panfolio to look for photos in a test directory, sets the gallery title and url and then marks all blurry photos in the gallery for later inspection:
+
+`./panfolio -c test/captions -d test -n 'Panfolio demo gallery!' -u 'https://github.com/caio1982/panfolio' -b 1`
+
+Below you can see the current help messages of Panfolio:
+
 ```
 demo@localhost$ ./panfolio
-usage: panfolio [-h] [-d DIR] [-n NAME] [-u URL] [-b BLURRY] [-f] [-s]
+usage: panfolio [-h] [-d DIR] [-n NAME] [-u URL] [-b N] [-f] [-c FILENAME]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -22,6 +28,8 @@ optional arguments:
   -u URL, --url URL     url to be appended to your gallery
   -b N, --blurry N      mark images whose blurry factor is above N
   -f, --fullscreen      makes a full screen pictures-only gallery
+  -c FILENAME, --captions FILENAME
+                        reads captions from file and add them to the photos
 ```
 
 Pros
