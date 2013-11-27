@@ -97,7 +97,7 @@ def get_image_orientation(image):
 
 def get_image_caption(filename):
     try:
-        captions = dict([line.split(':', 1) for line in open('test.captions')])
+        captions = dict([line.split(':', 1) for line in open(args.captions)])
         return captions[filename].strip()
     except:
         return filename
@@ -249,7 +249,7 @@ parser.add_argument('-n', '--name', help='the name of your gallery')
 parser.add_argument('-u', '--url', help='url to be appended to your gallery')
 parser.add_argument('-b', '--blurry', help='mark images whose blurry factor is above N', metavar='N')
 parser.add_argument('-f', '--fullscreen', help='makes a full screen pictures-only gallery', action='store_true')
-parser.add_argument('-c', '--captions', help='inserts captions tags in the gallery for later edition', action='store_true')
+parser.add_argument('-c', '--captions', help='reads captions from file and add them to the photos', metavar='FILENAME')
 
 args = parser.parse_args()
 
