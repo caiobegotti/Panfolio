@@ -54,7 +54,7 @@ HTML_HEADER = '''
 HTML_ITEM = '''
 	<li>
 		<a href='#image-%d'><img src='%s' alt='thumbnail' /></a>
-		<div class='overlay' id='image-%d'>
+		<div class='overlay' id='image-%d' style='background-image: url(%s);'>
 			%s <!-- optional caption block -->
 			<a href='%s'><div class='frame' style='background-image: url(%s);'></div></a>
 			<div id='navigation'>

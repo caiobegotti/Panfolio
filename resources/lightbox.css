@@ -11,6 +11,10 @@
 	background-color: #2f2f2f;
 	margin-left: auto;
 	margin-right: auto;
+
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 500%;
 }
 
 .prev, .close, .next {
