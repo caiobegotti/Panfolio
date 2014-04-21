@@ -96,7 +96,10 @@ def get_image_orientation(image):
 
 def get_image_caption(filename):
     captions = dict([line.split(':', 1) for line in open(args.captions)])
-    return captions[filename].strip()
+    try:
+        return captions[filename].strip()
+    except:
+        return ''
 
 # based on my own little python script, currently sitting at
 # https://github.com/caio1982/Scripts/blob/master/exposure_time_check.py
@@ -195,14 +198,12 @@ def gallery_generator(path):
             print 'Thumbnailing failed for [%s]' % filepath
 
         if args.captions:
-            try:
-                filecaption = '<div class=\'captioned\'><em>%s</em></div>' % get_image_caption(filename)
-            except:
-                filecaption = ''
+            filecaption = '<div class=\'captioned\'><em>%s</em></div>' % get_image_caption(filename)
 
         item = HTML_ITEM % (currentimage,
                             thumbnail,
                             currentimage,
+                            preview,
                             filecaption,
                             filename,
                             preview,
